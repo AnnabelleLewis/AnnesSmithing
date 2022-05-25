@@ -2,18 +2,11 @@ package com.annabelle.annessmithing.item.custom;
 
 import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
-import com.google.gson.JsonElement;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.ResourceManager;
-import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.util.profiling.ProfilerFiller;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -23,8 +16,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-
-import java.util.Map;
 
 
 public class CustomPickaxeItem extends DiggerItem {
@@ -79,5 +70,11 @@ public class CustomPickaxeItem extends DiggerItem {
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         Tier tier = ModMaterials.MATERIALS.get(stack.getTag().getString("annessmithing.head_material")).getToolHeadTier();
         return state.is(blocks) && net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(tier, state);
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        Material headMat = ModMaterials.MATERIALS.get(stack.getTag().getString("annessmithing.head_material"));
+        return headMat.getBaseDurrability();
     }
 }

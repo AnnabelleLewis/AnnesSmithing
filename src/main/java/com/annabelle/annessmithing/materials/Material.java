@@ -8,6 +8,9 @@ public class Material {
     private float baseDestroySpeed = 0.0f;
     private float destroySpeedMultiplier = 0.0f;
 
+    private int baseDurrability = 1;
+    private float durrabilityModifier = 1.0f;
+
     public Material tier(Tier toolHeadTier){
         this.toolHeadTier = toolHeadTier;
         return this;
@@ -24,6 +27,16 @@ public class Material {
         return this;
     }
 
+    public Material durrability(int baseDurrability){
+        this.baseDurrability = baseDurrability;
+        return this;
+    }
+    public Material durrability(int baseDurrability, float durrabilityModifier){
+        this.baseDurrability = baseDurrability;
+        this.durrabilityModifier = durrabilityModifier;
+        return this;
+    }
+
     public float getDestroySpeed(){
         return baseDestroySpeed;
     }
@@ -32,4 +45,7 @@ public class Material {
         return this.toolHeadTier;
     }
 
+    public int getBaseDurrability(){
+        return baseDurrability;
+    }
 }
