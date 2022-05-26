@@ -41,11 +41,19 @@ public class Material {
         return baseDestroySpeed;
     }
 
+    public float getDestroySpeedMultiplier(){
+        return destroySpeedMultiplier;
+    }
+
     public Tier getToolHeadTier(){
         return this.toolHeadTier;
     }
 
-    public int getBaseDurrability(){
-        return baseDurrability;
+    public float getBaseDurrability(){
+        return (float)baseDurrability;
+    }
+
+    public float getDurrabilityModifier(){
+        return durrabilityModifier;
     }
 }

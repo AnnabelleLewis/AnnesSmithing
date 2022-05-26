@@ -27,6 +27,26 @@ public class CustomPickaxeItem extends DiggerItem {
         this.blocks = BlockTags.MINEABLE_WITH_PICKAXE;
     }
 
+    public void setupToolMaterials(ItemStack itemStack, String headMaterial, String binderMaterial, String rodMaterial){
+        // Apply material tags
+        itemStack.getTag().putString("annessmithing.head_material",headMaterial);
+        itemStack.getTag().putString("annessmithing.binder_material",binderMaterial);
+        itemStack.getTag().putString("annessmithing.rod_material",rodMaterial);
+
+        // Get material objects
+        Material headMat = ModMaterials.MATERIALS.get(itemStack.getTag().getString("annessmithing.head_material"));
+        Material binderMat = ModMaterials.MATERIALS.get(itemStack.getTag().getString("annessmithing.binder_material"));
+        Material rodMat = ModMaterials.MATERIALS.get(itemStack.getTag().getString("annessmithing.rod_material"));
+
+        // Initialize base stats from head (Damage, Mining speed, Mining level, Durability)...
+        // and apply modifiers from handle
+        itemStack.getTag().putFloat("annessmithing.break_speed", headMat.getDestroySpeed() * rodMat.getDestroySpeedMultiplier());
+        itemStack.getTag().putInt("annessmithing.durrability", (int)(headMat.getBaseDurrability() * rodMat.getDurrabilityModifier()));
+
+
+        // TODO: Apply enchantments from all three
+    }
+
     @Override
     public void fillItemCategory(CreativeModeTab pCategory, NonNullList<ItemStack> pItems) {
         // do not call super
@@ -37,33 +57,20 @@ public class CustomPickaxeItem extends DiggerItem {
     }
 
     @Override
-    public InteractionResult onItemUseFirst(ItemStack stack, UseOnContext context) {
-        if(!stack.hasTag()){
-            stack.setTag(new CompoundTag());
-        }
-        stack.getTag().putString("annessmithing.head_material","flint");
-        return super.onItemUseFirst(stack, context);
-    }
-
-    @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
 
         if(!pPlayer.getItemInHand(pUsedHand).hasTag()){
             pPlayer.getItemInHand(pUsedHand).setTag(new CompoundTag());
         }
-        pPlayer.getItemInHand(pUsedHand).getTag().putString("annessmithing.head_material","flint");
-        pPlayer.sendMessage(new TextComponent("Added flint head"), pPlayer.getUUID());
-        pPlayer.sendMessage(new TextComponent("Head material is..."), pPlayer.getUUID());
-        pPlayer.sendMessage(new TextComponent(pPlayer.getItemInHand(pUsedHand).getTag().getString("annessmithing.head_material")), pPlayer.getUUID());
+        setupToolMaterials(pPlayer.getItemInHand(pUsedHand), "flint", "string", "wood");
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
     @Override
     public float getDestroySpeed(ItemStack pStack, BlockState pState) {
         //return super.getDestroySpeed(pStack, pState);
-        Material headMat = ModMaterials.MATERIALS.get(pStack.getTag().getString("annessmithing.head_material"));
-
-        return pState.is(this.blocks) ? headMat.getDestroySpeed() : 1.0f;
+        float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
+        return pState.is(this.blocks) ? destroySpeed : 1.0f;
     }
 
     @Override
@@ -74,7 +81,6 @@ public class CustomPickaxeItem extends DiggerItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        Material headMat = ModMaterials.MATERIALS.get(stack.getTag().getString("annessmithing.head_material"));
-        return headMat.getBaseDurrability();
+        return stack.getTag().getInt("annessmithing.durrability");
     }
 }
