@@ -55,11 +55,13 @@ public class ToolCraftingRecipe extends ShapelessRecipe{
         for (int i = 0; i < input_items.size(); i++) {
             if(input_items.get(i).is(ModTags.Items.TOOL_BINDERS)){
                 binder = input_items.get(i);
-
+                System.out.println("Binder item is..." + input_items.get(i).toString());
             } else if (input_items.get(i).is(ModTags.Items.TOOL_RODS)) {
                 rod = input_items.get(i);
+                System.out.println("Rod item is..." + input_items.get(i).toString());
             } else {
                 head = input_items.get(i);
+                System.out.println("Head item is..." + input_items.get(i).toString());
             }
         }
 
@@ -76,7 +78,7 @@ public class ToolCraftingRecipe extends ShapelessRecipe{
         if(rod_item instanceof ToolComponentItem){
             binder_material = ((ToolComponentItem) binder_item).getMaterial();
         }
-        Item head_item = rod.getItem();
+        Item head_item = head.getItem();
         if(head_item instanceof ToolComponentItem){
             head_material = ((ToolComponentItem) head_item).getMaterial();
         }
