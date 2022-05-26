@@ -4,15 +4,12 @@ import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -41,7 +38,7 @@ public class CustomPickaxeItem extends DiggerItem {
         // Initialize base stats from head (Damage, Mining speed, Mining level, Durability)...
         // and apply modifiers from handle
         itemStack.getTag().putFloat("annessmithing.break_speed", headMat.getDestroySpeed() * rodMat.getDestroySpeedMultiplier());
-        itemStack.getTag().putInt("annessmithing.durrability", (int)(headMat.getBaseDurrability() * rodMat.getDurrabilityModifier()));
+        itemStack.getTag().putInt("annessmithing.Durability", (int)(headMat.getBaseDurability() * rodMat.getDurabilityModifier()));
 
 
         // TODO: Apply enchantments from all three
@@ -81,6 +78,6 @@ public class CustomPickaxeItem extends DiggerItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return stack.getTag().getInt("annessmithing.durrability");
+        return stack.getTag().getInt("annessmithing.Durability");
     }
 }
