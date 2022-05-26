@@ -15,13 +15,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 
-public class CustomPickaxeItem extends DiggerItem {
+public class CustomToolItem extends DiggerItem {
 
     private final TagKey<Block> blocks;
 
-    public CustomPickaxeItem(Properties p_204112_) {
-        super(0.0f, 0.0f, Tiers.WOOD, BlockTags.MINEABLE_WITH_PICKAXE, p_204112_);
-        this.blocks = BlockTags.MINEABLE_WITH_PICKAXE;
+    public CustomToolItem(TagKey breakableBlocks, Properties p_204112_) {
+        super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
+        this.blocks = breakableBlocks;
     }
 
     public void setupToolMaterials(ItemStack itemStack, String headMaterial, String binderMaterial, String rodMaterial){

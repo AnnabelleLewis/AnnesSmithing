@@ -1,11 +1,11 @@
 package com.annabelle.annessmithing.item;
 
 import com.annabelle.annessmithing.AnnesSmithing;
-import com.annabelle.annessmithing.item.custom.CustomPickaxeItem;
+import com.annabelle.annessmithing.item.custom.CustomToolItem;
 import com.annabelle.annessmithing.item.custom.ToolComponentItem;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,7 +17,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> BLANK_PICK = ITEMS.register(
       "blank_pick",
-            () -> new CustomPickaxeItem(new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
+            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_PICKAXE, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
     );
 
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(

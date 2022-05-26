@@ -2,6 +2,7 @@ package com.annabelle.annessmithing;
 
 import com.annabelle.annessmithing.item.ModItems;
 
+import com.annabelle.annessmithing.recipie.ModRecipies;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
@@ -38,7 +39,7 @@ public class AnnesSmithing
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(eventBus);
-
+        ModRecipies.register(eventBus);
 
         eventBus.addListener(this::setup);
 

@@ -1,0 +1,18 @@
+{
+  "type": "annessmithing:tool_crafting",
+  "ingredients": [
+    {
+      "tag": "annessmithing:pickaxe_head"
+    },
+    {
+      "tag": "annessmithing:tool_binder"
+    },
+    {
+      "item": "minecraft:stone",
+      "tag": "annessmithing:tool_rod"
+    }
+  ],
+  "result": {
+    "item": "annessmithing:blank_pick"
+  }
+}
