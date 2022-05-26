@@ -40,6 +40,10 @@ public class CustomToolItem extends DiggerItem {
         itemStack.getTag().putFloat("annessmithing.break_speed", headMat.getDestroySpeed() * rodMat.getDestroySpeedMultiplier());
         itemStack.getTag().putInt("annessmithing.Durability", (int)(headMat.getBaseDurability() * rodMat.getDurabilityModifier()));
 
+        // Set color tags
+        itemStack.getTag().putLong("annessmithing.head_color", headMat.getColor());
+        itemStack.getTag().putLong("annessmithing.binder_color", binderMat.getColor());
+        itemStack.getTag().putLong("annessmithing.rod_color", rodMat.getColor());
 
         // TODO: Apply enchantments from all three
     }
@@ -80,4 +84,6 @@ public class CustomToolItem extends DiggerItem {
     public int getMaxDamage(ItemStack stack) {
         return stack.getTag().getInt("annessmithing.Durability");
     }
+
+
 }

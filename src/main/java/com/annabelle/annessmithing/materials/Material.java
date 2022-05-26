@@ -7,9 +7,9 @@ public class Material {
     private Tier toolHeadTier;
     private float baseDestroySpeed = 0.0f;
     private float destroySpeedMultiplier = 0.0f;
-
     private int baseDurability = 1;
     private float durabilityModifier = 1.0f;
+    private int color = 0xFFFFFFFF;
 
     public Material tier(Tier toolHeadTier){
         this.toolHeadTier = toolHeadTier;
@@ -27,13 +27,19 @@ public class Material {
         return this;
     }
 
-    public Material durability(int baseDurability){
+    public Material durability(int baseDurability) {
         this.baseDurability = baseDurability;
         return this;
     }
+
     public Material durability(int baseDurability, float DurabilityModifier){
         this.baseDurability = baseDurability;
         this.durabilityModifier = DurabilityModifier;
+        return this;
+    }
+
+    public Material color(int color){
+        this.color = color;
         return this;
     }
 
@@ -55,5 +61,9 @@ public class Material {
 
     public float getDurabilityModifier(){
         return durabilityModifier;
+    }
+
+    public int getColor(){
+        return  color;
     }
 }

@@ -9,11 +9,14 @@ public class ModMaterials {
             Map.entry("flint", new Material()
                     .destroySpeed(2.0f)
                     .tier(Tiers.WOOD)
-                    .durability(50,0.8f)),
-            Map.entry("string", new Material()),
+                    .durability(50,0.8f)
+                    .color(0xff222222)),
+            Map.entry("string", new Material()
+                    .color(0xffeeeeee)),
             Map.entry("wood", new Material()
                     .destroySpeed(1.5f,0.8f)
                     .tier(Tiers.WOOD)
-                    .durability(59, 0.8f))
+                    .durability(59, 0.8f)
+                    .color(0xff875734))
     );
 }

@@ -2,17 +2,21 @@ package com.annabelle.annessmithing;
 
 import com.annabelle.annessmithing.item.ModItems;
 
+import com.annabelle.annessmithing.item.custom.CustomToolItem;
+import com.annabelle.annessmithing.itemmodels.CustomToolModel;
 import com.annabelle.annessmithing.recipie.ModRecipies;
 import com.mojang.logging.LogUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
@@ -42,8 +46,7 @@ public class AnnesSmithing
         ModRecipies.register(eventBus);
 
         eventBus.addListener(this::setup);
-
-
+        eventBus.addListener(ClientSetup::registerItemColors);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -54,6 +57,5 @@ public class AnnesSmithing
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
     }
-
-
 }
+
