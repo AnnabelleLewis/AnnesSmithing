@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values" : [
-    "annessmithing:wood_tool_rod"
+    "annessmithing:wood_tool_rod",
+    "annessmithing:blazing_tool_rod"
   ]
 }
