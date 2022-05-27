@@ -9,11 +9,10 @@ public class ModMaterials {
     public static Map<String, Material> MATERIALS = Map.ofEntries(
             Map.entry("flint", new Material()
                     .destroySpeed(2.0f)
-                    .tier(Tiers.WOOD)
+                    .tier(Tiers.IRON)
                     .durability(50,0.8f)
                     .color(0xff222222)),
             Map.entry("string", new Material()
-                    .addEnchantment("minecraft:fire_aspect",1)
                     .color(0xffeeeeee)),
             Map.entry("wood", new Material()
                     .destroySpeed(1.5f,0.8f)
