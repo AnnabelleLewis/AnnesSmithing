@@ -122,7 +122,8 @@ public class CustomToolItem extends DiggerItem {
     public float getDestroySpeed(ItemStack pStack, BlockState pState) {
         //return super.getDestroySpeed(pStack, pState);
         float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
-        return pState.is(this.blocks) ? destroySpeed : 1.0f;
+        float destroySpeedMod = 1.0f + (pStack.getTag().getInt("annessmithing.break_speed_upgrades") * 0.1f);
+        return pState.is(this.blocks) ? destroySpeed * destroySpeedMod : 1.0f;
     }
 
     @Override
@@ -161,7 +162,8 @@ public class CustomToolItem extends DiggerItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        return stack.getTag().getInt("annessmithing.durability");
+        float durrabilityMod = 1.0f + (stack.getTag().getInt("annessmithing.durrability_upgrades") * 0.1f);
+        return Math.round(stack.getTag().getInt("annessmithing.durability") * durrabilityMod);
     }
 
     public boolean addToolXP(ItemStack stack, int xp){
