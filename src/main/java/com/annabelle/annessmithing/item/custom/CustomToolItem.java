@@ -16,6 +16,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -51,7 +52,7 @@ public class CustomToolItem extends DiggerItem {
 
         // Apply enchantments from all three
 
-        Map<Enchantment, Integer> itemEnchantments = Map.of();
+        HashMap<Enchantment, Integer> itemEnchantments = new HashMap<Enchantment, Integer>();
         for(Enchantment ench:headMat.getEnchantments().keySet()){
             if(itemEnchantments.containsKey(ench)){
                 Integer level = itemEnchantments.get(ench) + headMat.getEnchantments().get(ench);

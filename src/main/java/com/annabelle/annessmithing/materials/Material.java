@@ -8,6 +8,8 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Material {
@@ -19,7 +21,10 @@ public class Material {
     private float durabilityModifier = 1.0f;
     private int color = 0xFFFFFFFF;
 
-    private Map<String, Integer> enchantments = Map.of();
+    private HashMap<String, Integer> enchantments = new HashMap<String, Integer>();
+
+    private String enchantment = "";
+    private int enchantmentLevel = 0;
 
     public Material tier(Tier toolHeadTier){
         this.toolHeadTier = toolHeadTier;
@@ -83,11 +88,15 @@ public class Material {
     }
 
     public Map<Enchantment,Integer> getEnchantments(){
-        ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse("minecraft:fire_aspect"));
-        Map<Enchantment, Integer> outputEnchantments = Map.of();
-        for(String enchID:this.enchantments.keySet()){
+
+        HashMap<Enchantment, Integer> outputEnchantments = new HashMap<Enchantment, Integer>();
+        /*for(int i = 0; i < enchTierList.size(); i++){
+            Enchantment ench =  ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(enchIDList.get(i)));
+            outputEnchantments.put(ench, this.enchantments.get(enchTierList.get(i)));
+        }*/
+        for(String enchID: enchantments.keySet()){
             Enchantment ench =  ForgeRegistries.ENCHANTMENTS.getValue(ResourceLocation.tryParse(enchID));
-            outputEnchantments.put(ench, this.enchantments.get(enchID));
+            outputEnchantments.put(ench, enchantments.get(enchID));
         }
         return outputEnchantments;
     }
