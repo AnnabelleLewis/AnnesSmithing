@@ -33,7 +33,6 @@ public class ToolCraftingRecipe extends ShapelessRecipe{
     @Override
     public boolean matches(CraftingContainer pInv, Level pLevel) {
         boolean matches = super.matches(pInv, pLevel);
-        System.out.println(matches);
         return matches;
     }
 
