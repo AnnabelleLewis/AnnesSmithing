@@ -13,6 +13,8 @@ public class ModTags {
         public static final TagKey<Item> TOOL_RODS = tag("tool_components/tool_rod");
         public static final TagKey<Item> TOOL_BINDERS = tag("tool_components/tool_binder");
 
+        public static final  TagKey<Item> TOOLS = tag("tools");
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(AnnesSmithing.MOD_ID, name));
         }

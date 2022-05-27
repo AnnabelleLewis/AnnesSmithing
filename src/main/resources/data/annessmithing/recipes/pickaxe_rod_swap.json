@@ -1,0 +1,14 @@
+{
+  "type": "annessmithing:part_swap",
+  "ingredients": [
+    {
+      "item": "annessmithing:blank_pick"
+    },
+    {
+      "tag": "annessmithing:tool_components/tool_rod"
+    }
+  ],
+  "result": {
+    "item": "annessmithing:blank_pick"
+  }
+}
