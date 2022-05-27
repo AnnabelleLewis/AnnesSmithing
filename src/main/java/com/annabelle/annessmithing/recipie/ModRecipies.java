@@ -17,6 +17,10 @@ public class ModRecipies {
             SERIALIZERS.register("tool_crafting",
                     ToolCraftingRecipe.Serializer::new);
 
+    public static final RegistryObject<RecipeSerializer<PartSwapRecipe>> PART_SWAP_SERIALIZER =
+            SERIALIZERS.register("part_swap",
+                    PartSwapRecipe.Serializer::new);
+
     public static void register(IEventBus eventBus){
         SERIALIZERS.register(eventBus);
     }
