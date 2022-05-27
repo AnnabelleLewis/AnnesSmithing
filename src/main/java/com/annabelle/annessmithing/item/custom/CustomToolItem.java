@@ -2,14 +2,17 @@ package com.annabelle.annessmithing.item.custom;
 
 import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -125,9 +128,54 @@ public class CustomToolItem extends DiggerItem {
     }
 
     @Override
+    public boolean mineBlock(ItemStack pStack, Level pLevel, BlockState pState, BlockPos pPos, LivingEntity pEntityLiving) {
+        boolean levelUp = addToolXP(pStack, 10);
+        if(levelUp){
+            pEntityLiving.sendMessage(
+                    new TextComponent("Tool level up"),
+                    pEntityLiving.getUUID()
+            );
+        }
+        return super.mineBlock(pStack, pLevel, pState, pPos, pEntityLiving);
+    }
+
+    @Override
     public int getMaxDamage(ItemStack stack) {
         return stack.getTag().getInt("annessmithing.Durability");
     }
 
+    public boolean addToolXP(ItemStack stack, int xp){
+        // Test if tool has level/xp if not, initialize to level 0, 100 xp to next level
+        if(!stack.getTag().contains("annessmithing.tool_level")){
+            stack.getTag().putInt("annessmithing.tool_level", 0);
+            setXPToNextLevel(stack);
+        }
+        // Decrement xp to next level
+        int xpToNext = stack.getTag().getInt("annessmithing.xp_to_next_level");
+        xpToNext -= xp;
 
+        // If XP to next level <= 0, increment level, add modifier slot, reset xp to next level
+        if(xpToNext <= 0){
+            stack.getTag().putInt("annessmithing.tool_level",
+                    stack.getTag().getInt("annessmithing.tool_level") + 1);
+            setXPToNextLevel(stack);
+            if(stack.getTag().contains("annessmithing.open_mod_slots")){
+                stack.getTag().putInt("annessmithing.open_mod_slots", 1);
+            }else{
+                stack.getTag().putInt("annessmithing.open_mod_slots",
+                        stack.getTag().getInt("annessmithing.open_mod_slots") + 1);
+            }
+            return true;
+        }else{
+            stack.getTag().putInt("annessmithing.xp_to_next_level", xpToNext);
+        }
+        return false;
+    }
+
+    public void setXPToNextLevel(ItemStack stack){
+        int level = stack.getTag().getInt("annessmithing.tool_level");
+        int xpToNext = (int) Math.round(80.0 * Math.pow((double)level, 1.1));
+        xpToNext += 100;
+        stack.getTag().putInt("annessmithing.xp_to_next_level", xpToNext);
+    }
 }
