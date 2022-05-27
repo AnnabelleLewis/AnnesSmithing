@@ -8,6 +8,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
@@ -137,6 +139,7 @@ public class CustomToolItem extends DiggerItem {
                     new TextComponent("Tool level up"),
                     pEntityLiving.getUUID()
             );
+            pEntityLiving.playSound(SoundEvents.PLAYER_LEVELUP,1.0f,1.0f);
         }
         return super.mineBlock(pStack, pLevel, pState, pPos, pEntityLiving);
     }
@@ -176,7 +179,7 @@ public class CustomToolItem extends DiggerItem {
             stack.getTag().putInt("annessmithing.tool_level",
                     stack.getTag().getInt("annessmithing.tool_level") + 1);
             setXPToNextLevel(stack);
-            if(stack.getTag().contains("annessmithing.open_mod_slots")){
+            if(!stack.getTag().contains("annessmithing.open_mod_slots")){
                 stack.getTag().putInt("annessmithing.open_mod_slots", 1);
             }else{
                 stack.getTag().putInt("annessmithing.open_mod_slots",

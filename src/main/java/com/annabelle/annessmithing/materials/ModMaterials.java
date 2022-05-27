@@ -8,7 +8,7 @@ import java.util.Map;
 public class ModMaterials {
     public static Map<String, Material> MATERIALS = Map.ofEntries(
             Map.entry("flint", new Material()
-                    .destroySpeed(2.0f)
+                    .destroySpeed(5.0f)
                     .tier(Tiers.IRON)
                     .durability(50,0.8f)
                     .color(0xff222222)
