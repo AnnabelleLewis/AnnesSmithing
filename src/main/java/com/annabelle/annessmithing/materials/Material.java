@@ -20,6 +20,8 @@ public class Material {
     private int baseDurability = 1;
     private float durabilityModifier = 1.0f;
     private int color = 0xFFFFFFFF;
+    private String namePrefix = "";
+
 
     private HashMap<String, Integer> enchantments = new HashMap<String, Integer>();
 
@@ -63,6 +65,11 @@ public class Material {
         return this;
     }
 
+    public Material prefix(String prefix){
+        this.namePrefix = prefix;
+        return this;
+    }
+
     public float getDestroySpeed(){
         return baseDestroySpeed;
     }
@@ -99,5 +106,9 @@ public class Material {
             outputEnchantments.put(ench, enchantments.get(enchID));
         }
         return outputEnchantments;
+    }
+
+    public String getNamePrefix(){
+        return namePrefix;
     }
 }

@@ -1,3 +1,13 @@
 {
-  "item.annessmithing.blank_pick": "Blank Pick"
+  "annessmithing.materials.flint": "Flint",
+
+  "annessmithing.tools.pickaxe": " Pickaxe",
+
+  "item.annessmithing.blank_pick": "Blank Pick",
+
+  "item.annessmithing.wood_tool_rod": "Wood Tool Rod",
+
+  "item.annessmithing.string_binding": "String Binder",
+
+  "item.annessmithing.flint_pickaxe_head": "Flint Pickaxe Head"
 }

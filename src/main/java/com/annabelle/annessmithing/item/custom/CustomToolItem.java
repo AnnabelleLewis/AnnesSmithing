@@ -4,6 +4,8 @@ import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
@@ -44,6 +46,7 @@ public class CustomToolItem extends DiggerItem {
         // and apply modifiers from handle
         itemStack.getTag().putFloat("annessmithing.break_speed", headMat.getDestroySpeed() * rodMat.getDestroySpeedMultiplier());
         itemStack.getTag().putInt("annessmithing.Durability", (int)(headMat.getBaseDurability() * rodMat.getDurabilityModifier()));
+        itemStack.getTag().putString("annessmithing.name_prefix", headMat.getNamePrefix());
 
         // Set color tags
         itemStack.getTag().putLong("annessmithing.head_color", headMat.getColor());
@@ -81,6 +84,12 @@ public class CustomToolItem extends DiggerItem {
         EnchantmentHelper.setEnchantments(itemEnchantments,itemStack);
 
 
+    }
+
+    @Override
+    public Component getName(ItemStack pStack) {
+        return new TranslatableComponent(pStack.getTag().getString("annessmithing.name_prefix")).append(
+                new TranslatableComponent("annessmithing.tools.pickaxe"));
     }
 
     @Override

@@ -25,7 +25,7 @@ public class ModItems {
             () -> new ToolComponentItem("wood", new Item.Properties())
     );
     public static final RegistryObject<Item> STRING_BINDER = ITEMS.register(
-            "string_binder",
+            "string_binding",
             () -> new ToolComponentItem("string", new Item.Properties())
     );
     public static final RegistryObject<Item> FLINT_PICKAXE_HEAD = ITEMS.register(

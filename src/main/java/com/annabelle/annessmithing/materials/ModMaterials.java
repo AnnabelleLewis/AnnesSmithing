@@ -11,7 +11,8 @@ public class ModMaterials {
                     .destroySpeed(2.0f)
                     .tier(Tiers.IRON)
                     .durability(50,0.8f)
-                    .color(0xff222222)),
+                    .color(0xff222222)
+                    .prefix("annessmithing.materials.flint")),
             Map.entry("string", new Material()
                     .color(0xffeeeeee)),
             Map.entry("wood", new Material()
