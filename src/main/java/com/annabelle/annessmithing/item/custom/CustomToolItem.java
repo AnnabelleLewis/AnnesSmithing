@@ -20,8 +20,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -48,7 +50,7 @@ public class CustomToolItem extends DiggerItem {
         // Initialize base stats from head (Damage, Mining speed, Mining level, Durability)...
         // and apply modifiers from handle
         itemStack.getTag().putFloat("annessmithing.break_speed", headMat.getDestroySpeed() * rodMat.getDestroySpeedMultiplier());
-        itemStack.getTag().putInt("annessmithing.Durability", (int)(headMat.getBaseDurability() * rodMat.getDurabilityModifier()));
+        itemStack.getTag().putInt("annessmithing.durability", (int)(headMat.getBaseDurability() * rodMat.getDurabilityModifier()));
         itemStack.getTag().putString("annessmithing.name_prefix", headMat.getNamePrefix());
 
         // Set color tags
@@ -140,8 +142,23 @@ public class CustomToolItem extends DiggerItem {
     }
 
     @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        if(pStack.getTag().contains("annessmithing.tool_level")){
+            TextComponent levelComponent = new TextComponent("Tool level: " + pStack.getTag().getInt("annessmithing.tool_level"));
+            TextComponent xpComponent = new TextComponent("XP to next level: " + pStack.getTag().getInt("annessmithing.xp_to_next_level"));
+            pTooltipComponents.add(levelComponent);
+            pTooltipComponents.add(xpComponent);
+        }
+        if(pStack.getTag().contains("annessmithing.open_mod_slots")){
+            TextComponent modSlotComponent = new TextComponent("Upgrade slots: " + pStack.getTag().getInt("annessmithing.open_mod_slots"));
+            pTooltipComponents.add(modSlotComponent);
+        }
+    }
+
+    @Override
     public int getMaxDamage(ItemStack stack) {
-        return stack.getTag().getInt("annessmithing.Durability");
+        return stack.getTag().getInt("annessmithing.durability");
     }
 
     public boolean addToolXP(ItemStack stack, int xp){
