@@ -50,7 +50,7 @@ public class CustomToolItem extends DiggerItem {
         itemStack.getTag().putLong("annessmithing.rod_color", rodMat.getColor());
 
         // Apply enchantments from all three
-        /*
+
         Map<Enchantment, Integer> itemEnchantments = Map.of();
         for(Enchantment ench:headMat.getEnchantments().keySet()){
             if(itemEnchantments.containsKey(ench)){
@@ -79,7 +79,7 @@ public class CustomToolItem extends DiggerItem {
 
         EnchantmentHelper.setEnchantments(itemEnchantments,itemStack);
 
-         */
+
     }
 
     @Override
