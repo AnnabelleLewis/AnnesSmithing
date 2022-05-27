@@ -21,6 +21,10 @@ public class ModRecipies {
             SERIALIZERS.register("part_swap",
                     PartSwapRecipe.Serializer::new);
 
+    public static final  RegistryObject<RecipeSerializer<ToolUpgradeRecipe>> TOOL_UPGRADE_RECIPE =
+            SERIALIZERS.register("tool_upgrade",
+                    ToolUpgradeRecipe.Serializer::new);
+
     public static void register(IEventBus eventBus){
         SERIALIZERS.register(eventBus);
     }
