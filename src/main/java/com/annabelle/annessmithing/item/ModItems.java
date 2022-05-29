@@ -45,6 +45,10 @@ public class ModItems {
             "blazing_tool_rod",
             () -> new ToolComponentItem("blaze", new Item.Properties())
     );
+    public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register(
+            "speed_upgrade",
+            () -> new Item(new Item.Properties())
+    );
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
