@@ -183,7 +183,7 @@ public class CustomSwordItem extends TieredItem implements Vanishable {
 
     @Override
     public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
-        if(slot == EquipmentSlot.MAINHAND){return super.getAttributeModifiers(slot,stack);}
+        if(slot != EquipmentSlot.MAINHAND){return super.getAttributeModifiers(slot,stack);}
         float damageMod = 1.0f + (stack.getTag().getInt("annessmithing.attack_damage_upgrades") * 0.1f);
 
         float damage = Math.round(stack.getTag().getInt("annessmithing.attack_damage") * damageMod);
