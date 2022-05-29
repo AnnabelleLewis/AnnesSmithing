@@ -84,12 +84,6 @@ public class CustomSwordItem extends TieredItem implements Vanishable {
 
     }
 
-    @Override
-    public int getDamage(ItemStack stack) {
-        float damageMod = 1.0f + (stack.getTag().getInt("annessmithing.attack_damage_upgrades") * 0.1f);
-        return Math.round(stack.getTag().getInt("annessmithing.attack_damage") * damageMod);
-    }
-
     public boolean canAttackBlock(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer) {
         return !pPlayer.isCreative();
     }
@@ -180,5 +174,18 @@ public class CustomSwordItem extends TieredItem implements Vanishable {
         int xpToNext = (int) Math.round(80.0 * Math.pow((double)level, 1.1));
         xpToNext += 100;
         stack.getTag().putInt("annessmithing.xp_to_next_level", xpToNext);
+    }
+
+    @Override
+    public Multimap<Attribute, AttributeModifier> getAttributeModifiers(EquipmentSlot slot, ItemStack stack) {
+
+        float damageMod = 1.0f + (stack.getTag().getInt("annessmithing.attack_damage_upgrades") * 0.1f);
+
+        float damage = Math.round(stack.getTag().getInt("annessmithing.attack_damage") * damageMod);
+
+        ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
+        builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)damage, AttributeModifier.Operation.ADDITION));
+        builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", 0.5, AttributeModifier.Operation.ADDITION));
+        return builder.build();
     }
 }

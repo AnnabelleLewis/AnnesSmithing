@@ -1,0 +1,17 @@
+{
+  "type": "annessmithing:tool_crafting",
+  "ingredients": [
+    {
+      "tag": "annessmithing:tool_components/sword_head"
+    },
+    {
+      "tag": "annessmithing:tool_components/tool_binder"
+    },
+    {
+      "tag": "annessmithing:tool_components/tool_rod"
+    }
+  ],
+  "result": {
+    "item": "annessmithing:custom_sword"
+  }
+}
