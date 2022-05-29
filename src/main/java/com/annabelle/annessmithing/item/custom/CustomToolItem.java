@@ -2,40 +2,71 @@ package com.annabelle.annessmithing.item.custom;
 
 import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
+
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+
+import net.minecraft.core.BlockPos;
+
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.sounds.SoundEvent;
+
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 
 public class CustomToolItem extends DiggerItem {
 
-    private final TagKey<Block> blocks;
+    protected static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())), Blocks.DIRT_PATH, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())), Blocks.DIRT, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())), Blocks.COARSE_DIRT, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.DIRT.defaultBlockState())), Blocks.ROOTED_DIRT, Pair.of((p_150861_) -> {
+        return true;
+    }, changeIntoStateAndDropItem(Blocks.DIRT.defaultBlockState(), Items.HANGING_ROOTS))));
 
-    public CustomToolItem(TagKey breakableBlocks, Properties p_204112_) {
+    private final String nameSuffix;
+    private final TagKey<Block> blocks;
+    private final Boolean isHoe;
+
+    public CustomToolItem(TagKey breakableBlocks, String nameSuffix, Properties p_204112_) {
         super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
+        this.nameSuffix = nameSuffix;
         this.blocks = breakableBlocks;
+        this.isHoe = false;
+    }
+
+    public CustomToolItem(TagKey breakableBlocks, String nameSuffix, Properties p_204112_, Boolean is_hoe) {
+        super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
+        this.nameSuffix = nameSuffix;
+        this.blocks = breakableBlocks;
+        this.isHoe = is_hoe;
     }
 
     public void setupToolMaterials(ItemStack itemStack, String headMaterial, String binderMaterial, String rodMaterial){
@@ -94,9 +125,17 @@ public class CustomToolItem extends DiggerItem {
     }
 
     @Override
+    public InteractionResult useOn(UseOnContext pContext) {
+        if(isHoe){
+            return hoeUse(pContext);
+        }
+        return super.useOn(pContext);
+    }
+
+    @Override
     public Component getName(ItemStack pStack) {
         return new TranslatableComponent(pStack.getTag().getString("annessmithing.name_prefix")).append(
-                new TranslatableComponent("annessmithing.tools.pickaxe"));
+                new TranslatableComponent(nameSuffix));
     }
 
     @Override
@@ -107,7 +146,7 @@ public class CustomToolItem extends DiggerItem {
             pItems.get(0).getTag().putString("annessmithing.head_material","flint");
         }
     }
-
+    /*
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
 
@@ -116,11 +155,12 @@ public class CustomToolItem extends DiggerItem {
         }
         setupToolMaterials(pPlayer.getItemInHand(pUsedHand), "flint", "string", "wood");
         return super.use(pLevel, pPlayer, pUsedHand);
-    }
+    }*/
 
     @Override
     public float getDestroySpeed(ItemStack pStack, BlockState pState) {
         //return super.getDestroySpeed(pStack, pState);
+        if(isHoe){return 1f;}
         float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
         float destroySpeedMod = 1.0f + (pStack.getTag().getInt("annessmithing.break_speed_upgrades") * 0.1f);
         return pState.is(this.blocks) ? destroySpeed * destroySpeedMod : 1.0f;
@@ -166,6 +206,62 @@ public class CustomToolItem extends DiggerItem {
         return Math.round(stack.getTag().getInt("annessmithing.durability") * durrabilityMod);
     }
 
+    // Hoe exclusive actions
+
+    public InteractionResult hoeUse(UseOnContext pContext){
+        //int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(pContext);
+        //if (hook != 0) return hook > 0 ? InteractionResult.SUCCESS : InteractionResult.FAIL;
+        Level level = pContext.getLevel();
+        BlockPos blockpos = pContext.getClickedPos();
+        BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(pContext, net.minecraftforge.common.ToolActions.HOE_TILL, false);
+        Pair<Predicate<UseOnContext>, Consumer<UseOnContext>> pair = toolModifiedState == null ? null : Pair.of(ctx -> true, changeIntoState(toolModifiedState));
+        if (pair == null) {
+            return InteractionResult.PASS;
+        } else {
+            Predicate<UseOnContext> predicate = pair.getFirst();
+            Consumer<UseOnContext> consumer = pair.getSecond();
+            if (predicate.test(pContext)) {
+                Player player = pContext.getPlayer();
+                level.playSound(player, blockpos, SoundEvents.HOE_TILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                if (!level.isClientSide) {
+                    consumer.accept(pContext);
+                    if (player != null) {
+                        pContext.getItemInHand().hurtAndBreak(1, player, (p_150845_) -> {
+                            p_150845_.broadcastBreakEvent(pContext.getHand());
+                        });
+                    }
+                }
+
+                return InteractionResult.sidedSuccess(level.isClientSide);
+            } else {
+                return InteractionResult.PASS;
+            }
+        }
+    }
+
+    public static Consumer<UseOnContext> changeIntoState(BlockState pState) {
+        return (p_150848_) -> {
+            p_150848_.getLevel().setBlock(p_150848_.getClickedPos(), pState, 11);
+        };
+    }
+
+    public static Consumer<UseOnContext> changeIntoStateAndDropItem(BlockState pState, ItemLike pItemToDrop) {
+        return (p_150855_) -> {
+            p_150855_.getLevel().setBlock(p_150855_.getClickedPos(), pState, 11);
+            Block.popResourceFromFace(p_150855_.getLevel(), p_150855_.getClickedPos(), p_150855_.getClickedFace(), new ItemStack(pItemToDrop));
+        };
+    }
+
+    public static boolean onlyIfAirAbove(UseOnContext p_150857_) {
+        return p_150857_.getClickedFace() != Direction.DOWN && p_150857_.getLevel().getBlockState(p_150857_.getClickedPos().above()).isAir();
+    }
+
+    @Override
+    public boolean canPerformAction(ItemStack stack, net.minecraftforge.common.ToolAction toolAction) {
+        return net.minecraftforge.common.ToolActions.DEFAULT_HOE_ACTIONS.contains(toolAction);
+    }
+
+
     public boolean addToolXP(ItemStack stack, int xp){
         // Test if tool has level/xp if not, initialize to level 0, 100 xp to next level
         if(!stack.getTag().contains("annessmithing.tool_level")){
@@ -193,6 +289,7 @@ public class CustomToolItem extends DiggerItem {
         }
         return false;
     }
+
 
     public void setXPToNextLevel(ItemStack stack){
         int level = stack.getTag().getInt("annessmithing.tool_level");

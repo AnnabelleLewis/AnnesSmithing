@@ -17,7 +17,12 @@ public class ModItems {
 
     public static final RegistryObject<Item> BLANK_PICK = ITEMS.register(
       "blank_pick",
-            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_PICKAXE, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
+            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_PICKAXE, "annessmithing.tools.pickaxe", new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
+    );
+
+    public static final RegistryObject<Item> CUSTOM_HOE = ITEMS.register(
+            "custom_hoe",
+            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_HOE, "annessmithing.tools.hoe", new Item.Properties(), true)
     );
 
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(
@@ -30,6 +35,10 @@ public class ModItems {
     );
     public static final RegistryObject<Item> FLINT_PICKAXE_HEAD = ITEMS.register(
             "flint_pickaxe_head",
+            () -> new ToolComponentItem("flint", new Item.Properties())
+    );
+    public static final RegistryObject<Item> FLINT_HOE_HEAD = ITEMS.register(
+            "flint_hoe_head",
             () -> new ToolComponentItem("flint", new Item.Properties())
     );
     public static final RegistryObject<Item> BLAZING_TOOL_ROD = ITEMS.register(

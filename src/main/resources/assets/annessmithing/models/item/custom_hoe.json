@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "annessmithing:item/tool_rod_base",
+    "layer1": "annessmithing:item/hoe_head_base",
+    "layer2": "annessmithing:item/pickaxe_binding_base"
+  }
+}
