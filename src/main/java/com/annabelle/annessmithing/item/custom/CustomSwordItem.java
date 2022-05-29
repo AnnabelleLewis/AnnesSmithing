@@ -4,6 +4,8 @@ import com.annabelle.annessmithing.materials.ModMaterials;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -187,5 +189,11 @@ public class CustomSwordItem extends TieredItem implements Vanishable {
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)damage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", 0.5, AttributeModifier.Operation.ADDITION));
         return builder.build();
+    }
+
+    @Override
+    public Component getName(ItemStack pStack) {
+        return new TranslatableComponent(pStack.getTag().getString("annessmithing.name_prefix")).append(
+                new TranslatableComponent("annessmithing.tools.sword"));
     }
 }
