@@ -19,6 +19,9 @@ public class Material {
     private float destroySpeedMultiplier = 0.0f;
     private int baseDurability = 1;
     private float durabilityModifier = 1.0f;
+
+    private int baseDamage = 0;
+    private float damageModifier = 0f;
     private int color = 0xFFFFFFFF;
     private String namePrefix = "";
 
@@ -70,6 +73,17 @@ public class Material {
         return this;
     }
 
+    public Material damage(int damage){
+        this.baseDamage = damage;
+        return this;
+    }
+
+    public Material damage(int damage, float damageModifier){
+        this.baseDamage = damage;
+        this.damageModifier = damageModifier;
+        return this;
+    }
+
     public float getDestroySpeed(){
         return baseDestroySpeed;
     }
@@ -111,4 +125,8 @@ public class Material {
     public String getNamePrefix(){
         return namePrefix;
     }
+
+    public int getBaseDamage(){return baseDamage;}
+
+    public float getDamageModifier(){return damageModifier;}
 }

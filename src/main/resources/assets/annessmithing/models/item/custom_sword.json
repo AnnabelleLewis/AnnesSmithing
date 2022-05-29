@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "annessmithing:item/sword_model/hilt",
+    "layer1": "annessmithing:item/sword_model/head",
+    "layer2": "annessmithing:item/sword_model/guard"
+  }
+}

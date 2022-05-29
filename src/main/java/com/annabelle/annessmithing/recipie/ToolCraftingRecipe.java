@@ -1,6 +1,7 @@
 package com.annabelle.annessmithing.recipie;
 
 import com.annabelle.annessmithing.AnnesSmithing;
+import com.annabelle.annessmithing.item.custom.CustomSwordItem;
 import com.annabelle.annessmithing.item.custom.CustomToolItem;
 import com.annabelle.annessmithing.item.custom.ToolComponentItem;
 import com.annabelle.annessmithing.materials.Material;
@@ -85,6 +86,8 @@ public class ToolCraftingRecipe extends ShapelessRecipe{
         Item output_item = out.getItem();
         if(output_item instanceof CustomToolItem){
             ((CustomToolItem)output_item).setupToolMaterials(out,head_material,binder_material,rod_material);
+        } else if (output_item instanceof CustomSwordItem) {
+            ((CustomSwordItem) output_item).setupToolMaterials(out,head_material,binder_material,rod_material);
         }
 
         return out;
