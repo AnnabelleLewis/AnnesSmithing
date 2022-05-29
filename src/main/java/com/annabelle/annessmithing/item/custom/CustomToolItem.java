@@ -41,18 +41,20 @@ public class CustomToolItem extends DiggerItem {
         return true;
     }, changeIntoStateAndDropItem(Blocks.DIRT.defaultBlockState(), Items.HANGING_ROOTS))));
 
-
+    private final String nameSuffix;
     private final TagKey<Block> blocks;
     private final Boolean isHoe;
 
-    public CustomToolItem(TagKey breakableBlocks, Properties p_204112_) {
+    public CustomToolItem(TagKey breakableBlocks, String nameSuffix, Properties p_204112_) {
         super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
+        this.nameSuffix = nameSuffix;
         this.blocks = breakableBlocks;
         this.isHoe = false;
     }
 
-    public CustomToolItem(TagKey breakableBlocks, Properties p_204112_, Boolean is_hoe) {
+    public CustomToolItem(TagKey breakableBlocks, String nameSuffix, Properties p_204112_, Boolean is_hoe) {
         super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
+        this.nameSuffix = nameSuffix;
         this.blocks = breakableBlocks;
         this.isHoe = is_hoe;
     }
@@ -123,7 +125,7 @@ public class CustomToolItem extends DiggerItem {
     @Override
     public Component getName(ItemStack pStack) {
         return new TranslatableComponent(pStack.getTag().getString("annessmithing.name_prefix")).append(
-                new TranslatableComponent("annessmithing.tools.pickaxe"));
+                new TranslatableComponent(nameSuffix));
     }
 
     @Override
@@ -167,8 +169,8 @@ public class CustomToolItem extends DiggerItem {
     // Hoe exclusive actions
 
     public InteractionResult hoeUse(UseOnContext pContext){
-        int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(pContext);
-        if (hook != 0) return hook > 0 ? InteractionResult.SUCCESS : InteractionResult.FAIL;
+        //int hook = net.minecraftforge.event.ForgeEventFactory.onHoeUse(pContext);
+        //if (hook != 0) return hook > 0 ? InteractionResult.SUCCESS : InteractionResult.FAIL;
         Level level = pContext.getLevel();
         BlockPos blockpos = pContext.getClickedPos();
         BlockState toolModifiedState = level.getBlockState(blockpos).getToolModifiedState(pContext, net.minecraftforge.common.ToolActions.HOE_TILL, false);
