@@ -37,6 +37,10 @@ public class ModItems {
             "flint_pickaxe_head",
             () -> new ToolComponentItem("flint", new Item.Properties())
     );
+    public static final RegistryObject<Item> FLINT_HOE_HEAD = ITEMS.register(
+            "flint_hoe_head",
+            () -> new ToolComponentItem("flint", new Item.Properties())
+    );
     public static final RegistryObject<Item> BLAZING_TOOL_ROD = ITEMS.register(
             "blazing_tool_rod",
             () -> new ToolComponentItem("blaze", new Item.Properties())
