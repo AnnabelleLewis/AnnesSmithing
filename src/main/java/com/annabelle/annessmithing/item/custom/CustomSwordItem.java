@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -20,8 +21,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Material;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class CustomSwordItem extends TieredItem implements Vanishable {
 
@@ -195,5 +198,20 @@ public class CustomSwordItem extends TieredItem implements Vanishable {
     public Component getName(ItemStack pStack) {
         return new TranslatableComponent(pStack.getTag().getString("annessmithing.name_prefix")).append(
                 new TranslatableComponent("annessmithing.tools.sword"));
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        if(pStack.getTag().contains("annessmithing.tool_level")){
+            TextComponent levelComponent = new TextComponent("Tool level: " + pStack.getTag().getInt("annessmithing.tool_level"));
+            TextComponent xpComponent = new TextComponent("XP to next level: " + pStack.getTag().getInt("annessmithing.xp_to_next_level"));
+            pTooltipComponents.add(levelComponent);
+            pTooltipComponents.add(xpComponent);
+        }
+        if(pStack.getTag().contains("annessmithing.open_mod_slots")){
+            TextComponent modSlotComponent = new TextComponent("Upgrade slots: " + pStack.getTag().getInt("annessmithing.open_mod_slots"));
+            pTooltipComponents.add(modSlotComponent);
+        }
     }
 }
