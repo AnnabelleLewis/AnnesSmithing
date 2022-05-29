@@ -1,6 +1,7 @@
 package com.annabelle.annessmithing.item;
 
 import com.annabelle.annessmithing.AnnesSmithing;
+import com.annabelle.annessmithing.item.custom.CustomSwordItem;
 import com.annabelle.annessmithing.item.custom.CustomToolItem;
 import com.annabelle.annessmithing.item.custom.ToolComponentItem;
 import net.minecraft.tags.BlockTags;
@@ -10,6 +11,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.lwjgl.system.CallbackI;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -23,6 +25,10 @@ public class ModItems {
     public static final RegistryObject<Item> CUSTOM_HOE = ITEMS.register(
             "custom_hoe",
             () -> new CustomToolItem(BlockTags.MINEABLE_WITH_HOE, "annessmithing.tools.hoe", new Item.Properties(), true)
+    );
+    public static final RegistryObject<Item> CUSTOM_SWORD = ITEMS.register(
+            "custom_sword",
+            () -> new CustomSwordItem(new Item.Properties())
     );
 
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(
@@ -39,6 +45,10 @@ public class ModItems {
     );
     public static final RegistryObject<Item> FLINT_HOE_HEAD = ITEMS.register(
             "flint_hoe_head",
+            () -> new ToolComponentItem("flint", new Item.Properties())
+    );
+    public static final RegistryObject<Item> FLINT_SWORD_HEAD = ITEMS.register(
+            "flint_sword_head",
             () -> new ToolComponentItem("flint", new Item.Properties())
     );
     public static final RegistryObject<Item> BLAZING_TOOL_ROD = ITEMS.register(

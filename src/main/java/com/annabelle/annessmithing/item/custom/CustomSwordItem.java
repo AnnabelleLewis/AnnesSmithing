@@ -23,8 +23,8 @@ import java.util.HashMap;
 
 public class CustomSwordItem extends TieredItem implements Vanishable {
 
-    public CustomSwordItem(Tier pTier, Item.Properties pProperties) {
-        super(pTier, pProperties);
+    public CustomSwordItem(Item.Properties pProperties) {
+        super(Tiers.WOOD, pProperties);
 
     }
 
