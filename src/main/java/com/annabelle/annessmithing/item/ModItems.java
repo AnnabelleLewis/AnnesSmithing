@@ -20,6 +20,11 @@ public class ModItems {
             () -> new CustomToolItem(BlockTags.MINEABLE_WITH_PICKAXE, new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
     );
 
+    public static final RegistryObject<Item> CUSTOM_HOE = ITEMS.register(
+            "custom_hoe",
+            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_HOE, new Item.Properties(), true)
+    );
+
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(
             "wood_tool_rod",
             () -> new ToolComponentItem("wood", new Item.Properties())

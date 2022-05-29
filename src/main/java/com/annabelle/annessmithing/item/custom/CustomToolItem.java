@@ -2,6 +2,8 @@ package com.annabelle.annessmithing.item.custom;
 
 import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -24,6 +26,7 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.HashMap;
@@ -34,18 +37,24 @@ import java.util.function.Predicate;
 
 public class CustomToolItem extends DiggerItem {
 
+    protected static final Map<Block, Pair<Predicate<UseOnContext>, Consumer<UseOnContext>>> TILLABLES = Maps.newHashMap(ImmutableMap.of(Blocks.GRASS_BLOCK, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())), Blocks.DIRT_PATH, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())), Blocks.DIRT, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.FARMLAND.defaultBlockState())), Blocks.COARSE_DIRT, Pair.of(HoeItem::onlyIfAirAbove, changeIntoState(Blocks.DIRT.defaultBlockState())), Blocks.ROOTED_DIRT, Pair.of((p_150861_) -> {
+        return true;
+    }, changeIntoStateAndDropItem(Blocks.DIRT.defaultBlockState(), Items.HANGING_ROOTS))));
+
+
     private final TagKey<Block> blocks;
-    private final Boolean is_hoe = false;
+    private final Boolean isHoe;
 
     public CustomToolItem(TagKey breakableBlocks, Properties p_204112_) {
         super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
         this.blocks = breakableBlocks;
+        this.isHoe = false;
     }
 
     public CustomToolItem(TagKey breakableBlocks, Properties p_204112_, Boolean is_hoe) {
         super(0.0f, 0.0f, Tiers.WOOD, breakableBlocks, p_204112_);
         this.blocks = breakableBlocks;
-        is_hoe = is_hoe;
+        this.isHoe = is_hoe;
     }
 
     public void setupToolMaterials(ItemStack itemStack, String headMaterial, String binderMaterial, String rodMaterial){
@@ -105,7 +114,7 @@ public class CustomToolItem extends DiggerItem {
 
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
-        if(is_hoe){
+        if(isHoe){
             return hoeUse(pContext);
         }
         return super.useOn(pContext);
@@ -125,7 +134,7 @@ public class CustomToolItem extends DiggerItem {
             pItems.get(0).getTag().putString("annessmithing.head_material","flint");
         }
     }
-
+    /*
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
 
@@ -134,11 +143,12 @@ public class CustomToolItem extends DiggerItem {
         }
         setupToolMaterials(pPlayer.getItemInHand(pUsedHand), "flint", "string", "wood");
         return super.use(pLevel, pPlayer, pUsedHand);
-    }
+    }*/
 
     @Override
     public float getDestroySpeed(ItemStack pStack, BlockState pState) {
         //return super.getDestroySpeed(pStack, pState);
+        if(isHoe){return 1f;}
         float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
         return pState.is(this.blocks) ? destroySpeed : 1.0f;
     }
