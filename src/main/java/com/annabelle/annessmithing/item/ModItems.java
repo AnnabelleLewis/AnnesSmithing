@@ -1,6 +1,7 @@
 package com.annabelle.annessmithing.item;
 
 import com.annabelle.annessmithing.AnnesSmithing;
+import com.annabelle.annessmithing.item.custom.CustomAxeItem;
 import com.annabelle.annessmithing.item.custom.CustomSwordItem;
 import com.annabelle.annessmithing.item.custom.CustomToolItem;
 import com.annabelle.annessmithing.item.custom.ToolComponentItem;
@@ -33,7 +34,7 @@ public class ModItems {
     );
     public static final RegistryObject<Item> CUSTOM_AXE = ITEMS.register(
             "custom_axe",
-            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_AXE, "annessmithing.tools.axe",new Item.Properties())
+            () -> new CustomAxeItem(BlockTags.MINEABLE_WITH_AXE, "annessmithing.tools.axe",new Item.Properties())
     );
 
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(
