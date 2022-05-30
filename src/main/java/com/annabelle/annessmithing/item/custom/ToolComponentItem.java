@@ -1,6 +1,7 @@
 package com.annabelle.annessmithing.item.custom;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 public class ToolComponentItem extends Item {
 
@@ -12,4 +13,11 @@ public class ToolComponentItem extends Item {
     }
 
     public String getMaterial(){return this.material;}
+
+    @Override
+    public int getItemStackLimit(ItemStack stack) {
+        return 1;
+    }
+
+
 }
