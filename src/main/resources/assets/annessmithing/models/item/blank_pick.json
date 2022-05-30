@@ -2,7 +2,7 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "annessmithing:item/tool_rod_base",
-    "layer1": "annessmithing:item/pickaxe_head_base",
-    "layer2": "annessmithing:item/pickaxe_binding_base"
+    "layer1": "annessmithing:item/pickaxe_model/head",
+    "layer2": "annessmithing:item/pickaxe_model/binding"
   }
 }
