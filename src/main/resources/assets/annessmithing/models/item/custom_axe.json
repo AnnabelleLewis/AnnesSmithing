@@ -1,0 +1,8 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "annessmithing:item/axe_model/rod",
+    "layer1": "annessmithing:item/axe_model/head",
+    "layer2": "annessmithing:item/axe_model/binding"
+  }
+}

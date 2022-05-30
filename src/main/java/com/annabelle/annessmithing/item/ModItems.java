@@ -31,6 +31,10 @@ public class ModItems {
             "custom_sword",
             () -> new CustomSwordItem(new Item.Properties())
     );
+    public static final RegistryObject<Item> CUSTOM_AXE = ITEMS.register(
+            "custom_axe",
+            () -> new CustomToolItem(BlockTags.MINEABLE_WITH_AXE, "annessmithing.tools.axe",new Item.Properties())
+    );
 
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(
             "wood_tool_rod",

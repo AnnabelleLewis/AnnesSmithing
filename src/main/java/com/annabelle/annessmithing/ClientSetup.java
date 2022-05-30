@@ -11,5 +11,6 @@ public class ClientSetup {
         event.getItemColors().register(toolModel, ModItems.BLANK_PICK.get());
         event.getItemColors().register(toolModel, ModItems.CUSTOM_HOE.get());
         event.getItemColors().register(toolModel, ModItems.CUSTOM_SWORD.get());
+        event.getItemColors().register(toolModel, ModItems.CUSTOM_AXE.get());
     }
 }
