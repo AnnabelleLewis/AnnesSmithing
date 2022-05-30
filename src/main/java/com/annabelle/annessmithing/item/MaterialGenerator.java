@@ -20,37 +20,37 @@ public class MaterialGenerator {
     public static void generateMaterials(String material, EnumSet<GenFlags> flags, DeferredRegister<Item> register){
         if(flags.contains(GenFlags.PICKAXE_HEAD)){
             register.register(material + "_pickaxe_head",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
                     );
         }
         if(flags.contains(GenFlags.AXE_HEAD)){
             register.register(material + "_axe_head",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
             );
         }
         if(flags.contains(GenFlags.HOE_HEAD)){
             register.register(material + "_hoe_head",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
             );
         }
         if(flags.contains(GenFlags.SWORD_HEAD)){
             register.register(material + "_sword_head",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
             );
         }
         if(flags.contains(GenFlags.SHOVEL_HEAD)){
             register.register(material + "_shovel_head",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
             );
         }
         if(flags.contains(GenFlags.TOOL_BINDING)){
             register.register(material + "_tool_binding",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
             );
         }
         if(flags.contains(GenFlags.TOOL_ROD)){
             register.register(material + "_tool_rod",
-                    () -> new ToolComponentItem(material, new Item.Properties())
+                    () -> new ToolComponentItem(material, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
             );
         }
     }
