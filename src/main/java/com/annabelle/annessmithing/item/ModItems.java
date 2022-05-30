@@ -1,9 +1,7 @@
 package com.annabelle.annessmithing.item;
 
 import com.annabelle.annessmithing.AnnesSmithing;
-import com.annabelle.annessmithing.item.custom.CustomSwordItem;
-import com.annabelle.annessmithing.item.custom.CustomToolItem;
-import com.annabelle.annessmithing.item.custom.ToolComponentItem;
+import com.annabelle.annessmithing.item.custom.*;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -31,6 +29,14 @@ public class ModItems {
             "custom_sword",
             () -> new CustomSwordItem(new Item.Properties())
     );
+    public static final RegistryObject<Item> CUSTOM_AXE = ITEMS.register(
+            "custom_axe",
+            () -> new CustomAxeItem(BlockTags.MINEABLE_WITH_AXE, "annessmithing.tools.axe",new Item.Properties())
+    );
+    public static final RegistryObject<Item> CUSTOM_SHOVEL = ITEMS.register(
+            "custom_shovel",
+            () -> new CustomShovelItem(BlockTags.MINEABLE_WITH_SHOVEL, "annessmithing.tools.shovel", new Item.Properties())
+    );
 
     public static final RegistryObject<Item> WOOD_TOOL_ROD = ITEMS.register(
             "wood_tool_rod",
@@ -56,7 +62,8 @@ public class ModItems {
                         MaterialGenerator.GenFlags.AXE_HEAD,
                         MaterialGenerator.GenFlags.HOE_HEAD,
                         MaterialGenerator.GenFlags.PICKAXE_HEAD,
-                        MaterialGenerator.GenFlags.SWORD_HEAD),
+                        MaterialGenerator.GenFlags.SWORD_HEAD,
+                        MaterialGenerator.GenFlags.SHOVEL_HEAD),
                 ITEMS);
         ITEMS.register(eventBus);
     }
