@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "annessmithing:item/flint_hoe_head"
+    "layer0": "annessmithing:item/flint/hoe_head"
   }
 }
