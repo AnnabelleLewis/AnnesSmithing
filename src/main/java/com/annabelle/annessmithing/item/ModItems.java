@@ -18,7 +18,7 @@ public class ModItems {
             DeferredRegister.create(ForgeRegistries.ITEMS, AnnesSmithing.MOD_ID);
 
     public static final RegistryObject<Item> BLANK_PICK = ITEMS.register(
-      "blank_pick",
+      "custom_pick",
             () -> new CustomToolItem(BlockTags.MINEABLE_WITH_PICKAXE, "annessmithing.tools.pickaxe", new Item.Properties().tab(CreativeModeTab.TAB_TOOLS))
     );
 
