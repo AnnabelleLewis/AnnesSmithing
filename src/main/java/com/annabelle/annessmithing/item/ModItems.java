@@ -74,6 +74,42 @@ public class ModItems {
                         MaterialGenerator.GenFlags.SWORD_HEAD,
                         MaterialGenerator.GenFlags.SHOVEL_HEAD),
                 ITEMS);
+        MaterialGenerator.generateMaterials(
+                "iron",
+                EnumSet.of(
+                        MaterialGenerator.GenFlags.AXE_HEAD,
+                        MaterialGenerator.GenFlags.HOE_HEAD,
+                        MaterialGenerator.GenFlags.PICKAXE_HEAD,
+                        MaterialGenerator.GenFlags.SWORD_HEAD,
+                        MaterialGenerator.GenFlags.SHOVEL_HEAD),
+                ITEMS);
+        MaterialGenerator.generateMaterials(
+                "gold",
+                EnumSet.of(
+                        MaterialGenerator.GenFlags.AXE_HEAD,
+                        MaterialGenerator.GenFlags.HOE_HEAD,
+                        MaterialGenerator.GenFlags.PICKAXE_HEAD,
+                        MaterialGenerator.GenFlags.SWORD_HEAD,
+                        MaterialGenerator.GenFlags.SHOVEL_HEAD),
+                ITEMS);
+        MaterialGenerator.generateMaterials(
+                "diamond",
+                EnumSet.of(
+                        MaterialGenerator.GenFlags.AXE_HEAD,
+                        MaterialGenerator.GenFlags.HOE_HEAD,
+                        MaterialGenerator.GenFlags.PICKAXE_HEAD,
+                        MaterialGenerator.GenFlags.SWORD_HEAD,
+                        MaterialGenerator.GenFlags.SHOVEL_HEAD),
+                ITEMS);
+        MaterialGenerator.generateMaterials(
+                "netherite",
+                EnumSet.of(
+                        MaterialGenerator.GenFlags.AXE_HEAD,
+                        MaterialGenerator.GenFlags.HOE_HEAD,
+                        MaterialGenerator.GenFlags.PICKAXE_HEAD,
+                        MaterialGenerator.GenFlags.SWORD_HEAD,
+                        MaterialGenerator.GenFlags.SHOVEL_HEAD),
+                ITEMS);
         ITEMS.register(eventBus);
     }
 }
