@@ -65,6 +65,15 @@ public class ModItems {
                         MaterialGenerator.GenFlags.SWORD_HEAD,
                         MaterialGenerator.GenFlags.SHOVEL_HEAD),
                 ITEMS);
+        MaterialGenerator.generateMaterials(
+                "copper",
+                EnumSet.of(
+                        MaterialGenerator.GenFlags.AXE_HEAD,
+                        MaterialGenerator.GenFlags.HOE_HEAD,
+                        MaterialGenerator.GenFlags.PICKAXE_HEAD,
+                        MaterialGenerator.GenFlags.SWORD_HEAD,
+                        MaterialGenerator.GenFlags.SHOVEL_HEAD),
+                ITEMS);
         ITEMS.register(eventBus);
     }
 }

@@ -14,6 +14,14 @@ public class ModMaterials {
                     .color(0xff222222)
                     .prefix("annessmithing.materials.flint")
                     .damage(4,0.8f)),
+            Map.entry("copper", new Material()
+                    .destroySpeed(4f)
+                    .durability(130)
+                    .damage(5)
+                    .prefix("annessmithing.materials.copper")
+                    .tier(Tiers.STONE)
+                    .color(0xffe77c56)
+            ),
             Map.entry("string", new Material()
                     .color(0xffeeeeee)),
             Map.entry("wood", new Material()

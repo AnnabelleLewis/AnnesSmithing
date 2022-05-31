@@ -1,5 +1,6 @@
 {
   "annessmithing.materials.flint": "Flint",
+  "annessmithing.materials.copper": "Copper",
 
   "annessmithing.tools.pickaxe": " Pickaxe",
   "annessmithing.tools.hoe": " Hoe",
@@ -15,5 +16,11 @@
   "item.annessmithing.flint_hoe_head": "Flint Hoe Head",
   "item.annessmithing.flint_sword_head": "Flint Sword Head",
   "item.annessmithing.flint_axe_head": "Flint Axe Head",
-  "item.annessmithing.flint_shovel_head": "Flint Shovel Head"
+  "item.annessmithing.flint_shovel_head": "Flint Shovel Head",
+
+  "item.annessmithing.copper_pickaxe_head": "Copper Pickaxe Head",
+  "item.annessmithing.copper_hoe_head": "Copper Hoe Head",
+  "item.annessmithing.copper_sword_head": "Copper Sword Head",
+  "item.annessmithing.copper_axe_head": "Copper Axe Head",
+  "item.annessmithing.copper_shovel_head": "Copper Shovel Head"
 }
