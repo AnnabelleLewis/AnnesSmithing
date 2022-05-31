@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "annessmithing:item/netherite/pickaxe_head"
+  }
+}
