@@ -44,7 +44,7 @@ public class ModMaterials {
                     .damage(7)
                     .prefix("annessmithing.materials.diamond")
                     .tier(Tiers.DIAMOND)
-                    .color(0xffd3fff3)
+                    .color(0xff49eedb)
             ),
             Map.entry("netherite", new Material()
                     .destroySpeed(9f)
