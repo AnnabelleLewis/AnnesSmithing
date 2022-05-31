@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values" : [
-    "annessmithing:flint_hoe_head"
+    "annessmithing:flint_hoe_head",
+    "annessmithing:copper_hoe_head"
   ]
 }
