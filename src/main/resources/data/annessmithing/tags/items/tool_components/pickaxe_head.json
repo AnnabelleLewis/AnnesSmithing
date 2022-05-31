@@ -2,6 +2,10 @@
   "replace": false,
   "values" : [
     "annessmithing:flint_pickaxe_head",
-    "annessmithing:copper_pickaxe_head"
+    "annessmithing:copper_pickaxe_head",
+    "annessmithing:iron_pickaxe_head",
+    "annessmithing:gold_pickaxe_head",
+    "annessmithing:diamond_pickaxe_head",
+    "annessmithing:netherite_pickaxe_head"
   ]
 }

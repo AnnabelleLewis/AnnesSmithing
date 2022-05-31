@@ -2,6 +2,11 @@
   "replace": false,
   "values" : [
     "annessmithing:flint_axe_head",
-    "annessmithing:copper_axe_head"
+    "annessmithing:copper_axe_head",
+    "annessmithing:iron_axe_head",
+    "annessmithing:gold_axe_head",
+    "annessmithing:diamond_axe_head",
+    "annessmithing:netherite_axe_head"
+
   ]
 }
