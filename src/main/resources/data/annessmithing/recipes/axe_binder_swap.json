@@ -1,0 +1,14 @@
+{
+  "type": "annessmithing:part_swap",
+  "ingredients": [
+    {
+      "item": "annessmithing:custom_axe"
+    },
+    {
+      "tag": "annessmithing:tool_components/tool_binder"
+    }
+  ],
+  "result": {
+    "item": "annessmithing:custom_axe"
+  }
+}
