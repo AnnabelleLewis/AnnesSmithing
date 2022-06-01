@@ -2,6 +2,10 @@
   "replace": false,
   "values" : [
     "annessmithing:flint_hoe_head",
-    "annessmithing:copper_hoe_head"
+    "annessmithing:copper_hoe_head",
+    "annessmithing:iron_hoe_head",
+    "annessmithing:gold_hoe_head",
+    "annessmithing:diamond_hoe_head",
+    "annessmithing:netherite_hoe_head"
   ]
 }

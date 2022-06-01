@@ -22,5 +22,29 @@
   "item.annessmithing.copper_hoe_head": "Copper Hoe Head",
   "item.annessmithing.copper_sword_head": "Copper Sword Head",
   "item.annessmithing.copper_axe_head": "Copper Axe Head",
-  "item.annessmithing.copper_shovel_head": "Copper Shovel Head"
+  "item.annessmithing.copper_shovel_head": "Copper Shovel Head",
+
+  "item.annessmithing.iron_pickaxe_head": "Iron Pickaxe Head",
+  "item.annessmithing.iron_hoe_head": "Iron Hoe Head",
+  "item.annessmithing.iron_sword_head": "Iron Sword Head",
+  "item.annessmithing.iron_axe_head": "Iron Axe Head",
+  "item.annessmithing.iron_shovel_head": "Iron Shovel Head",
+
+  "item.annessmithing.gold_pickaxe_head": "Gold Pickaxe Head",
+  "item.annessmithing.gold_hoe_head": "Gold Hoe Head",
+  "item.annessmithing.gold_sword_head": "Gold Sword Head",
+  "item.annessmithing.gold_axe_head": "Gold Axe Head",
+  "item.annessmithing.gold_shovel_head": "Gold Shovel Head",
+
+  "item.annessmithing.diamond_pickaxe_head": "Diamond Pickaxe Head",
+  "item.annessmithing.diamond_hoe_head": "Diamond Hoe Head",
+  "item.annessmithing.diamond_sword_head": "Diamond Sword Head",
+  "item.annessmithing.diamond_axe_head": "Diamond Axe Head",
+  "item.annessmithing.diamond_shovel_head": "Diamond Shovel Head",
+
+  "item.annessmithing.netherite_pickaxe_head": "Netherite Pickaxe Head",
+  "item.annessmithing.netherite_hoe_head": "Netherite Hoe Head",
+  "item.annessmithing.netherite_sword_head": "Netherite Sword Head",
+  "item.annessmithing.netherite_axe_head": "Netherite Axe Head",
+  "item.annessmithing.netherite_shovel_head": "Netherite Shovel Head"
 }

@@ -16,6 +16,10 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         registerMaterialToolHeads("flint");
         registerMaterialToolHeads("copper");
+        registerMaterialToolHeads("iron");
+        registerMaterialToolHeads("gold");
+        registerMaterialToolHeads("diamond");
+        registerMaterialToolHeads("netherite");
     }
 
     private void registerMaterialToolHeads(String material){

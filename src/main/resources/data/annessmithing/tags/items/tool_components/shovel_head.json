@@ -2,6 +2,10 @@
   "replace": false,
   "values" : [
     "annessmithing:flint_shovel_head",
-    "annessmithing:copper_shovel_head"
+    "annessmithing:copper_shovel_head",
+    "annessmithing:iron_shovel_head",
+    "annessmithing:gold_shovel_head",
+    "annessmithing:diamond_shovel_head",
+    "annessmithing:netherite_shovel_head"
   ]
 }
