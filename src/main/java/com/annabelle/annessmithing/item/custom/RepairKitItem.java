@@ -40,4 +40,13 @@ public class RepairKitItem extends Item {
         }
         return stack.getTag().getInt("annessmithing.durability_left");}
 
+    @Override
+    public int getBarWidth(ItemStack pStack) {
+        float width = 32.0f;
+        if(pStack.hasTag()){
+            width = (float)pStack.getTag().getInt("annessmithing.durability_left") / (float)baseDurability;
+
+        }
+        return (int)(width*32f);
+    }
 }

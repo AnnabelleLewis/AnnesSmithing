@@ -92,9 +92,10 @@ public class ToolRepairRecipe extends ShapelessRecipe {
 
     @Override
     public NonNullList<ItemStack> getRemainingItems(CraftingContainer pInv) {
-        NonNullList<ItemStack> results = NonNullList.create();
+        NonNullList<ItemStack> nonnulllist = NonNullList.withSize(pInv.getContainerSize(), ItemStack.EMPTY);
         ItemStack repairKit = ItemStack.EMPTY;
         ItemStack tool = ItemStack.EMPTY;
+        int kitPos = 0;
         for (int i = 0; i < pInv.getContainerSize(); i++) {
             if (!pInv.getItem(i).isEmpty()) {
                 if(pInv.getItem(i).is(ModTags.Items.TOOLS)){
@@ -103,6 +104,7 @@ public class ToolRepairRecipe extends ShapelessRecipe {
                 }
                 if(pInv.getItem(i).is(ModTags.Items.REPAIR_KITS)){
                     repairKit = pInv.getItem(i).copy();
+                    kitPos = i;
                     System.out.println("Found kit");
                 }
             }
@@ -117,8 +119,8 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         int durabilityChange = Math.min(toolDamage, repairKitPower);
 
         RepairKitItem.removeDurability(repairKit,durabilityChange);
-        results.add(repairKit);
-        return results;
+        nonnulllist.set(kitPos, repairKit);
+        return nonnulllist;
     }
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ToolRepairRecipe> {
