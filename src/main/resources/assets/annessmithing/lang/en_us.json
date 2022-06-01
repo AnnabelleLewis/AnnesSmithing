@@ -1,6 +1,10 @@
 {
   "annessmithing.materials.flint": "Flint",
   "annessmithing.materials.copper": "Copper",
+  "annessmithing.materials.iron": "Iron",
+  "annessmithing.materials.gold": "Gold",
+  "annessmithing.materials.diamond": "Diamond",
+  "annessmithing.materials.netherite": "Netherite",
 
   "annessmithing.tools.pickaxe": " Pickaxe",
   "annessmithing.tools.hoe": " Hoe",
