@@ -49,15 +49,16 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         for (int i = 0; i < pInv.getContainerSize(); i++) {
             if (!pInv.getItem(i).isEmpty()) {
                 if(pInv.getItem(i).is(ModTags.Items.TOOLS)){
-                    tool = pInv.getItem(i);
+                    tool = pInv.getItem(i).copy();
                     System.out.println("Found tool");
                 }
                 if(pInv.getItem(i).is(ModTags.Items.REPAIR_KITS)){
-                    repairKit = pInv.getItem(i);
+                    repairKit = pInv.getItem(i).copy();
                     System.out.println("Found kit");
                 }
             }
         }
+
 
         // Test repair kit level against tool head
         String headMatID = tool.getTag().getString("annessmithing.head_material");
@@ -86,7 +87,7 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         RepairKitItem.removeDurability(repairKit,durabilityChange);
         tool.setDamageValue(tool.getDamageValue() - durabilityChange);
 
-        return tool.copy();
+        return tool;
     }
 
     @Override
