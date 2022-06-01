@@ -1,6 +1,7 @@
 package com.annabelle.annessmithing.recipie;
 
 import com.annabelle.annessmithing.AnnesSmithing;
+import com.annabelle.annessmithing.item.custom.CustomSwordItem;
 import com.annabelle.annessmithing.item.custom.CustomToolItem;
 import com.annabelle.annessmithing.item.custom.ToolComponentItem;
 import com.annabelle.annessmithing.util.ModTags;
@@ -76,6 +77,9 @@ public class PartSwapRecipe extends ShapelessRecipe {
         Item output_item = out.getItem();
         if(output_item instanceof CustomToolItem){
             ((CustomToolItem)output_item).setupToolMaterials(out,headMaterial,binderMaterial,rodMaterial);
+        }
+        if(output_item instanceof CustomSwordItem){
+            ((CustomSwordItem)output_item).setupToolMaterials(out,headMaterial,binderMaterial,rodMaterial);
         }
         
         return out;
