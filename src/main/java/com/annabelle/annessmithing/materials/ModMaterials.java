@@ -13,7 +13,8 @@ public class ModMaterials {
                     .durability(60,0.8f)
                     .color(0xff222222)
                     .prefix("annessmithing.materials.flint")
-                    .damage(4,0.8f)),
+                    .damage(4,0.8f)
+                    .repairTier(1)),
             Map.entry("copper", new Material()
                     .destroySpeed(4f)
                     .durability(130)
@@ -21,6 +22,7 @@ public class ModMaterials {
                     .prefix("annessmithing.materials.copper")
                     .tier(Tiers.STONE)
                     .color(0xffe77c56)
+                    .repairTier(2)
             ),
             Map.entry("iron", new Material()
                     .destroySpeed(6f)
@@ -29,6 +31,7 @@ public class ModMaterials {
                     .prefix("annessmithing.materials.iron")
                     .tier(Tiers.IRON)
                     .color(0xffdddddd)
+                    .repairTier(3)
             ),
             Map.entry("gold", new Material()
                     .destroySpeed(12f)
@@ -37,6 +40,7 @@ public class ModMaterials {
                     .prefix("annessmithing.materials.gold")
                     .tier(Tiers.STONE)
                     .color(0xfffdf55f)
+                    .repairTier(2)
             ),
             Map.entry("diamond", new Material()
                     .destroySpeed(8f)
@@ -45,6 +49,7 @@ public class ModMaterials {
                     .prefix("annessmithing.materials.diamond")
                     .tier(Tiers.DIAMOND)
                     .color(0xff49eedb)
+                    .repairTier(4)
             ),
             Map.entry("netherite", new Material()
                     .destroySpeed(9f)
@@ -53,6 +58,7 @@ public class ModMaterials {
                     .prefix("annessmithing.materials.netherite")
                     .tier(Tiers.NETHERITE)
                     .color(0xff747174)
+                    .repairTier(5)
             ),
             Map.entry("string", new Material()
                     .color(0xffeeeeee)),

@@ -20,6 +20,8 @@ public class Material {
     private int baseDurability = 1;
     private float durabilityModifier = 1.0f;
 
+    private int repairTier = 0;
+
     private int baseDamage = 0;
     private float damageModifier = 0f;
     private int color = 0xFFFFFFFF;
@@ -84,6 +86,11 @@ public class Material {
         return this;
     }
 
+    public Material repairTier(int tier){
+        this.repairTier = tier;
+        return this;
+    }
+
     public float getDestroySpeed(){
         return baseDestroySpeed;
     }
@@ -129,4 +136,6 @@ public class Material {
     public int getBaseDamage(){return baseDamage;}
 
     public float getDamageModifier(){return damageModifier;}
+
+    public int getRepairTier(){return repairTier;}
 }
