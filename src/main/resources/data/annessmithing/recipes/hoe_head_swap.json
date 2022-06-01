@@ -1,0 +1,14 @@
+{
+  "type": "annessmithing:part_swap",
+  "ingredients": [
+    {
+      "item": "annessmithing:custom_hoe"
+    },
+    {
+      "tag": "annessmithing:tool_components/hoe_head"
+    }
+  ],
+  "result": {
+    "item": "annessmithing:custom_hoe"
+  }
+}
