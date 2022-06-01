@@ -1,5 +1,6 @@
 package com.annabelle.annessmithing.recipie;
 
+import com.annabelle.annessmithing.util.ModTags;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -30,7 +31,25 @@ public class ToolRepairRecipe extends ShapelessRecipe {
     }
 
     public ItemStack assemble(CraftingContainer pInv) {
-        return this.result.copy();
+        ItemStack repairKit = ItemStack.EMPTY;
+        ItemStack tool = ItemStack.EMPTY;
+        for (int i = 0; i < pInv.getContainerSize(); i++) {
+            if (!pInv.getItem(i).isEmpty()) {
+                if(pInv.getItem(i).is(ModTags.Items.TOOLS)){
+                    tool = pInv.getItem(i);
+                }
+                if(pInv.getItem(i).is(ModTags.Items.REPAIR_KITS)){
+                    repairKit = pInv.getItem(i);
+                }
+            }
+        }
+
+        // Test repair kit level against tool head
+        // Find how much durability the tool wants
+        // Find how much durability the repair kit can give
+        // Take the lesser, add to tool, remove from kit
+
+        return tool.copy();
     }
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ToolRepairRecipe> {
