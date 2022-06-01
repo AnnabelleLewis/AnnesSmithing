@@ -1,6 +1,7 @@
 package com.annabelle.annessmithing.item.custom;
 
 import net.minecraft.client.renderer.item.ItemProperties;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
@@ -32,6 +33,11 @@ public class RepairKitItem extends Item {
     }
 
     public int getRepairLevel(){return repairLevel;}
-    public static int getDurability(ItemStack stack){return stack.getTag().getInt("annessmithing.durability_left");}
+    public static int getDurability(ItemStack stack){
+        if(!stack.hasTag()){
+            stack.setTag(new CompoundTag());
+            stack.getTag().putInt("annessmithing.durability_left", 100);
+        }
+        return stack.getTag().getInt("annessmithing.durability_left");}
 
 }

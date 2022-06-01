@@ -25,7 +25,7 @@ public class ModRecipies {
             SERIALIZERS.register("tool_upgrade",
                     ToolUpgradeRecipe.Serializer::new);
 
-    public static final RegistryObject<RecipeSerializer<ToolRepairRecipe>> TOOL_REPAIR_RECIPIE =
+    public static final RegistryObject<RecipeSerializer<ToolRepairRecipe>> TOOL_REPAIR_RECIPE =
             SERIALIZERS.register("tool_repair",
                     ToolRepairRecipe.Serializer::new);
 

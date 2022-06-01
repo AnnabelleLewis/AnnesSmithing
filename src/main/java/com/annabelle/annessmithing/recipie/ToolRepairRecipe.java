@@ -1,5 +1,6 @@
 package com.annabelle.annessmithing.recipie;
 
+import com.annabelle.annessmithing.AnnesSmithing;
 import com.annabelle.annessmithing.item.custom.RepairKitItem;
 import com.annabelle.annessmithing.materials.Material;
 import com.annabelle.annessmithing.materials.ModMaterials;
@@ -14,24 +15,32 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraft.world.item.crafting.ShapedRecipe;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
+import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.Level;
 
 public class ToolRepairRecipe extends ShapelessRecipe {
 
     private final ResourceLocation id;
     final String group;
-    final ItemStack result;
     final NonNullList<Ingredient> ingredients;
 
-    public ToolRepairRecipe(ResourceLocation pId, String pGroup, ItemStack pResult, NonNullList<Ingredient> pIngredients) {
-        super(pId, pGroup, pResult, pIngredients);
+    public ToolRepairRecipe(ResourceLocation pId, String pGroup, NonNullList<Ingredient> pIngredients) {
+        super(pId, pGroup, ItemStack.EMPTY, pIngredients);
         this.id = pId;
         this.group = pGroup;
-        this.result = pResult;
+
         this.ingredients = pIngredients;
+    }
+
+    @Override
+    public boolean matches(CraftingContainer pInv, Level pLevel) {
+        System.out.println("Testing tool repair");
+        return super.matches(pInv, pLevel);
+    }
+
+    @Override
+    public RecipeType<?> getType() {
+        return RecipeType.CRAFTING;
     }
 
     public ItemStack assemble(CraftingContainer pInv) {
@@ -41,9 +50,11 @@ public class ToolRepairRecipe extends ShapelessRecipe {
             if (!pInv.getItem(i).isEmpty()) {
                 if(pInv.getItem(i).is(ModTags.Items.TOOLS)){
                     tool = pInv.getItem(i);
+                    System.out.println("Found tool");
                 }
                 if(pInv.getItem(i).is(ModTags.Items.REPAIR_KITS)){
                     repairKit = pInv.getItem(i);
+                    System.out.println("Found kit");
                 }
             }
         }
@@ -59,7 +70,9 @@ public class ToolRepairRecipe extends ShapelessRecipe {
             repairKitTier = ((RepairKitItem) repairKitItem).getRepairLevel();
         }
 
-        if(repairKitTier > materialTier){return ItemStack.EMPTY;}
+        if(repairKitTier < materialTier){
+            System.out.println("Repair kit tier not high enough");
+            return ItemStack.EMPTY;}
 
         // Find how much durability the tool wants
         int toolDamage = tool.getDamageValue();
@@ -90,15 +103,14 @@ public class ToolRepairRecipe extends ShapelessRecipe {
     }
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ToolRepairRecipe> {
-        private static final ResourceLocation NAME = new ResourceLocation("minecraft", "crafting_tool_repair");
+        private static final ResourceLocation NAME = new ResourceLocation(AnnesSmithing.MOD_ID, "tool_repair");
         public ToolRepairRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
             String s = GsonHelper.getAsString(pJson, "group", "");
             NonNullList<Ingredient> nonnulllist = itemsFromJson(GsonHelper.getAsJsonArray(pJson, "ingredients"));
             if (nonnulllist.isEmpty()) {
                 throw new JsonParseException("No ingredients for shapeless recipe");
             } else  {
-                ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"));
-                return new ToolRepairRecipe(pRecipeId, s, itemstack, nonnulllist);
+                return new ToolRepairRecipe(pRecipeId, s, nonnulllist);
             }
         }
 
@@ -124,8 +136,8 @@ public class ToolRepairRecipe extends ShapelessRecipe {
                 nonnulllist.set(j, Ingredient.fromNetwork(pBuffer));
             }
 
-            ItemStack itemstack = pBuffer.readItem();
-            return new ToolRepairRecipe(pRecipeId, s, itemstack, nonnulllist);
+
+            return new ToolRepairRecipe(pRecipeId, s, nonnulllist);
         }
 
         public void toNetwork(FriendlyByteBuf pBuffer, ToolRepairRecipe pRecipe) {
@@ -136,7 +148,7 @@ public class ToolRepairRecipe extends ShapelessRecipe {
                 ingredient.toNetwork(pBuffer);
             }
 
-            pBuffer.writeItem(pRecipe.result);
+
         }
     }
 }

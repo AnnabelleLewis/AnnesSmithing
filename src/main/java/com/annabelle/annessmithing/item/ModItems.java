@@ -55,6 +55,11 @@ public class ModItems {
             () -> new Item(new Item.Properties())
     );
 
+    public static final RegistryObject<Item> BASIC_REPAIR_KIT = ITEMS.register(
+            "basic_repair_kit",
+            () -> new RepairKitItem(50,1, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+    );
+
     public static void register(IEventBus eventBus) {
         MaterialGenerator.generateMaterials(
                 "flint",
