@@ -49,4 +49,9 @@ public class RepairKitItem extends Item {
         }
         return (int)(width*32f);
     }
+
+    @Override
+    public boolean isBarVisible(ItemStack pStack) {
+        return true;
+    }
 }
