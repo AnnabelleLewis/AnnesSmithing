@@ -1,5 +1,8 @@
 package com.annabelle.annessmithing.recipie;
 
+import com.annabelle.annessmithing.item.custom.RepairKitItem;
+import com.annabelle.annessmithing.materials.Material;
+import com.annabelle.annessmithing.materials.ModMaterials;
 import com.annabelle.annessmithing.util.ModTags;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -9,6 +12,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
 import net.minecraft.world.inventory.CraftingContainer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -45,11 +49,44 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         }
 
         // Test repair kit level against tool head
+        String headMatID = tool.getTag().getString("annessmithing.head_material");
+        Material headMaterial = ModMaterials.MATERIALS.get(headMatID);
+        int materialTier = headMaterial.getRepairTier();
+
+        int repairKitTier = 0;
+        Item repairKitItem = repairKit.getItem();
+        if(repairKitItem instanceof RepairKitItem){
+            repairKitTier = ((RepairKitItem) repairKitItem).getRepairLevel();
+        }
+
+        if(repairKitTier > materialTier){return ItemStack.EMPTY;}
+
         // Find how much durability the tool wants
+        int toolDamage = tool.getDamageValue();
+
         // Find how much durability the repair kit can give
+        int repairKitPower = RepairKitItem.getDurability(repairKit);
+
         // Take the lesser, add to tool, remove from kit
+        int durabilityChange = Math.min(toolDamage, repairKitPower);
+
+        RepairKitItem.removeDurability(repairKit,durabilityChange);
+        tool.setDamageValue(tool.getDamageValue() - durabilityChange);
 
         return tool.copy();
+    }
+
+    @Override
+    public NonNullList<ItemStack> getRemainingItems(CraftingContainer pInv) {
+        NonNullList<ItemStack> results = NonNullList.create();
+        for (int i = 0; i < pInv.getContainerSize(); i++) {
+            if (!pInv.getItem(i).isEmpty()) {
+                if(pInv.getItem(i).is(ModTags.Items.REPAIR_KITS)){
+                    results.add(pInv.getItem(i));
+                }
+            }
+        }
+        return results;
     }
 
     public static class Serializer extends net.minecraftforge.registries.ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ToolRepairRecipe> {

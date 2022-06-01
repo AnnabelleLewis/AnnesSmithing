@@ -22,7 +22,7 @@ public class RepairKitItem extends Item {
         return stack;
     }
 
-    public void removeDurability(ItemStack stack, int durability){
+    public static void removeDurability(ItemStack stack, int durability){
         int currentDurability = stack.getTag().getInt("annessmithing.durability_left");
         currentDurability -= durability;
         if(currentDurability <= 0){
@@ -30,5 +30,8 @@ public class RepairKitItem extends Item {
         }
         stack.getTag().putInt("annessmithing.durability_left", currentDurability);
     }
+
+    public int getRepairLevel(){return repairLevel;}
+    public static int getDurability(ItemStack stack){return stack.getTag().getInt("annessmithing.durability_left");}
 
 }
