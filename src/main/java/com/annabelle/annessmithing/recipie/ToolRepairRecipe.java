@@ -84,7 +84,7 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         // Take the lesser, add to tool, remove from kit
         int durabilityChange = Math.min(toolDamage, repairKitPower);
 
-        RepairKitItem.removeDurability(repairKit,durabilityChange);
+
         tool.setDamageValue(tool.getDamageValue() - durabilityChange);
 
         return tool;
@@ -93,13 +93,31 @@ public class ToolRepairRecipe extends ShapelessRecipe {
     @Override
     public NonNullList<ItemStack> getRemainingItems(CraftingContainer pInv) {
         NonNullList<ItemStack> results = NonNullList.create();
+        ItemStack repairKit = ItemStack.EMPTY;
+        ItemStack tool = ItemStack.EMPTY;
         for (int i = 0; i < pInv.getContainerSize(); i++) {
             if (!pInv.getItem(i).isEmpty()) {
+                if(pInv.getItem(i).is(ModTags.Items.TOOLS)){
+                    tool = pInv.getItem(i).copy();
+                    System.out.println("Found tool");
+                }
                 if(pInv.getItem(i).is(ModTags.Items.REPAIR_KITS)){
-                    results.add(pInv.getItem(i));
+                    repairKit = pInv.getItem(i).copy();
+                    System.out.println("Found kit");
                 }
             }
         }
+        // Find how much durability the tool wants
+        int toolDamage = tool.getDamageValue();
+
+        // Find how much durability the repair kit can give
+        int repairKitPower = RepairKitItem.getDurability(repairKit);
+
+        // Take the lesser, add to tool, remove from kit
+        int durabilityChange = Math.min(toolDamage, repairKitPower);
+
+        RepairKitItem.removeDurability(repairKit,durabilityChange);
+        results.add(repairKit);
         return results;
     }
 
