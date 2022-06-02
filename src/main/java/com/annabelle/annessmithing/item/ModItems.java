@@ -55,9 +55,25 @@ public class ModItems {
             () -> new Item(new Item.Properties())
     );
 
+    public static final RegistryObject<Item> PRIMITIVE_REPAIR_KIT = ITEMS.register(
+            "primitive_repair_kit",
+            () -> new RepairKitItem(80,1, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+    );
     public static final RegistryObject<Item> BASIC_REPAIR_KIT = ITEMS.register(
             "basic_repair_kit",
-            () -> new RepairKitItem(50,1, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+            () -> new RepairKitItem(200,2, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+    );
+    public static final RegistryObject<Item> IMPROVED_REPAIR_KIT = ITEMS.register(
+            "improved_repair_kit",
+            () -> new RepairKitItem(800,3, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+    );
+    public static final RegistryObject<Item> ADVANCED_REPAIR_KIT = ITEMS.register(
+            "advanced_repair_kit",
+            () -> new RepairKitItem(1800,4, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+    );
+    public static final RegistryObject<Item> SUPERIOR_REPAIR_KIT = ITEMS.register(
+            "superior_repair_kit",
+            () -> new RepairKitItem(2500,5, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
     );
 
     public static void register(IEventBus eventBus) {
