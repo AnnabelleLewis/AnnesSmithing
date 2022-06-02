@@ -44,6 +44,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder repairKit(String kitLevel){
         return withExistingParent(kitLevel + "_repair_kit" ,
                 new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(AnnesSmithing.MOD_ID,"item/repair_kits/"+ kitLevel));
+                new ResourceLocation(AnnesSmithing.MOD_ID,"item/repair_kits/"+ kitLevel + "_repair_kit"));
     }
 }

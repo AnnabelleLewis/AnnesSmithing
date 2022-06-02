@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "CKC",
+    " C "
+  ],
+  "key": {
+    "K": {
+      "item": "annessmithing:improved_repair_kit"
+    },
+    "C": {
+      "tag": "forge:gems/diamond"
+    }
+  },
+  "result": {
+    "item": "annessmithing:advanced_repair_kit"
+  }
+}

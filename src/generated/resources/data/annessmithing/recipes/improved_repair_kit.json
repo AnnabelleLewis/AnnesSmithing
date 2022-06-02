@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " C ",
+    "CKC",
+    " C "
+  ],
+  "key": {
+    "K": {
+      "item": "annessmithing:basic_repair_kit"
+    },
+    "C": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "annessmithing:improved_repair_kit"
+  }
+}

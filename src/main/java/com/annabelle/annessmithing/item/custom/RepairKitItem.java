@@ -20,6 +20,7 @@ public class RepairKitItem extends Item {
     @Override
     public ItemStack getDefaultInstance() {
         ItemStack stack = super.getDefaultInstance();
+        stack.setTag(new CompoundTag());
         stack.getTag().putInt("annessmithing.durability_left", baseDurability);
         return stack;
     }
