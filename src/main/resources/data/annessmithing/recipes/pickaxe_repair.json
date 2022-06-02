@@ -1,0 +1,15 @@
+{
+  "type": "annessmithing:tool_repair",
+  "ingredients": [
+    {
+      "item": "annessmithing:custom_pick"
+    },
+    {
+      "tag": "annessmithing:repair_kits"
+    }
+
+  ],
+  "result": {
+    "item": "annessmithing:custom_pickaxe"
+  }
+}

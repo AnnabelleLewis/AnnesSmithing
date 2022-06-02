@@ -21,6 +21,8 @@ public class ModTags {
 
         public static final  TagKey<Item> TOOLS = tag("tools");
 
+        public static final TagKey<Item> REPAIR_KITS = tag("repair_kits");
+
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(new ResourceLocation(AnnesSmithing.MOD_ID, name));
         }

@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values" : [
-    "annessmithing:blank_pick"
+    "annessmithing:custom_pick",
+    "annessmithing:custom_axe",
+    "annessmithing:custom_shovel",
+    "annessmithing:custom_hoe",
+    "annessmithing:custom_sword"
   ]
 }
