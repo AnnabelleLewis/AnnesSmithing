@@ -12,6 +12,12 @@
   "annessmithing.tools.axe": " Axe",
   "annessmithing.tools.shovel": " Shovel",
 
+  "item.annessmithing.primitive_repair_kit": "Primitive Repair Kit",
+  "item.annessmithing.basic_repair_kit": "Basic Repair Kit",
+  "item.annessmithing.improved_repair_kit": "Improved Repair Kit",
+  "item.annessmithing.advanced_repair_kit": "Advanced Repair Kit",
+  "item.annessmithing.superior_repair_kit": "Superior Repair Kit",
+
   "item.annessmithing.wood_tool_rod": "Wood Tool Rod",
 
   "item.annessmithing.string_binding": "String Binder",
