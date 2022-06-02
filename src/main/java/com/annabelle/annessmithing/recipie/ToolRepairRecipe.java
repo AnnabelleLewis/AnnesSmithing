@@ -79,7 +79,11 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         int toolDamage = tool.getDamageValue();
 
         // Find how much durability the repair kit can give
-        int repairKitPower = RepairKitItem.getDurability(repairKit);
+        int repairKitPower = 0;
+
+        if(repairKitItem instanceof RepairKitItem){
+            repairKitPower = ((RepairKitItem) repairKitItem).getDurability(repairKit);
+        }
 
         // Take the lesser, add to tool, remove from kit
         int durabilityChange = Math.min(toolDamage, repairKitPower);
@@ -113,7 +117,13 @@ public class ToolRepairRecipe extends ShapelessRecipe {
         int toolDamage = tool.getDamageValue();
 
         // Find how much durability the repair kit can give
-        int repairKitPower = RepairKitItem.getDurability(repairKit);
+        Item repairKitItem = repairKit.getItem();
+
+        int repairKitPower = 0;
+
+        if(repairKitItem instanceof RepairKitItem){
+            repairKitPower = ((RepairKitItem) repairKitItem).getDurability(repairKit);
+        }
 
         // Take the lesser, add to tool, remove from kit
         int durabilityChange = Math.min(toolDamage, repairKitPower);
