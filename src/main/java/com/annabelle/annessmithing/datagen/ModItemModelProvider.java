@@ -20,6 +20,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         registerMaterialToolHeads("gold");
         registerMaterialToolHeads("diamond");
         registerMaterialToolHeads("netherite");
+
+        repairKit("primitive");
+        repairKit("basic");
+        repairKit("improved");
+        repairKit("advanced");
+        repairKit("superior");
     }
 
     private void registerMaterialToolHeads(String material){
@@ -34,5 +40,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(materialName + "_" + part_name,
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(AnnesSmithing.MOD_ID,"item/" + materialName + "/"+ part_name));
+    }
+    private ItemModelBuilder repairKit(String kitLevel){
+        return withExistingParent(kitLevel + "_repair_kit" ,
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(AnnesSmithing.MOD_ID,"item/repair_kits/"+ kitLevel));
     }
 }
