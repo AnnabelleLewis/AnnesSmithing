@@ -56,5 +56,17 @@
   "item.annessmithing.netherite_hoe_head": "Netherite Hoe Head",
   "item.annessmithing.netherite_sword_head": "Netherite Sword Head",
   "item.annessmithing.netherite_axe_head": "Netherite Axe Head",
-  "item.annessmithing.netherite_shovel_head": "Netherite Shovel Head"
+  "item.annessmithing.netherite_shovel_head": "Netherite Shovel Head",
+
+  "item.annessmithing.basic_speed_upgrade": "Basic Speed Upgrade",
+  "item.annessmithing.basic_durability_upgrade": "Basic Durability Upgrade",
+  "item.annessmithing.basic_damage_upgrade": "Basic Damage Upgrade",
+
+  "item.annessmithing.improved_speed_upgrade": "Improved Speed Upgrade",
+  "item.annessmithing.improved_durability_upgrade": "Improved Durability Upgrade",
+  "item.annessmithing.improved_damage_upgrade": "Improved Damage Upgrade",
+
+  "item.annessmithing.supreme_speed_upgrade": "Supreme Speed Upgrade",
+  "item.annessmithing.supreme_durability_upgrade": "Supreme Durability Upgrade",
+  "item.annessmithing.supreme_damage_upgrade": "Supreme Damage Upgrade"
 }
