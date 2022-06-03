@@ -75,42 +75,42 @@ public class ModItems {
 
     public static final RegistryObject<Item> BASIC_SPEED_UPGRADE = ITEMS.register(
             "basic_speed_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
     public static final RegistryObject<Item> IMPROVED_SPEED_UPGRADE = ITEMS.register(
             "improved_speed_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
     public static final RegistryObject<Item> SUPREME_SPEED_UPGRADE = ITEMS.register(
             "supreme_speed_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
 
     public static final RegistryObject<Item> BASIC_DAMAGE_UPGRADE = ITEMS.register(
             "basic_damage_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
     public static final RegistryObject<Item> IMPROVED_DAMAGE_UPGRADE = ITEMS.register(
             "improved_damage_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
     public static final RegistryObject<Item> SUPREME_DAMAGE_UPGRADE = ITEMS.register(
             "supreme_damage_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
 
 
     public static final RegistryObject<Item> BASIC_DURABILITY_UPGRADE = ITEMS.register(
             "basic_durability_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
     public static final RegistryObject<Item> IMPROVED_DURABILITY_UPGRADE = ITEMS.register(
             "improved_durability_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
     public static final RegistryObject<Item> SUPREME_DURABILITY_UPGRADE = ITEMS.register(
             "supreme_durability_upgrade",
-            () -> new Item(new Item.Properties())
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
     );
 
 

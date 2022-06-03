@@ -26,6 +26,18 @@ public class ModItemModelProvider extends ItemModelProvider {
         repairKit("improved");
         repairKit("advanced");
         repairKit("superior");
+
+        upgrade("damage", "basic");
+        upgrade("damage", "improved");
+        upgrade("damage", "supreme");
+
+        upgrade("durability", "basic");
+        upgrade("durability", "improved");
+        upgrade("durability", "supreme");
+
+        upgrade("speed", "basic");
+        upgrade("speed", "improved");
+        upgrade("speed", "supreme");
     }
 
     private void registerMaterialToolHeads(String material){
@@ -45,5 +57,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         return withExistingParent(kitLevel + "_repair_kit" ,
                 new ResourceLocation("item/generated")).texture("layer0",
                 new ResourceLocation(AnnesSmithing.MOD_ID,"item/repair_kits/"+ kitLevel + "_repair_kit"));
+    }
+
+    private ItemModelBuilder upgrade(String upgradeName, String upgradeLevel){
+        return withExistingParent(upgradeLevel + "_" + upgradeName + "_upgrade",
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(AnnesSmithing.MOD_ID,"item/upgrades/"+ upgradeLevel + "_" + upgradeName + "_upgrade"));
     }
 }
