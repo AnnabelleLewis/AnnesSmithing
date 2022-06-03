@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "QUQ",
+    "QIQ",
+    "QUQ"
+  ],
+  "key": {
+    "Q": {
+      "tag": "forge:obsidian"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "U": {
+      "item": "annessmithing:basic_durability_upgrade"
+    }
+  },
+  "result": {
+    "item": "annessmithing:improved_durability_upgrade"
+  }
+}

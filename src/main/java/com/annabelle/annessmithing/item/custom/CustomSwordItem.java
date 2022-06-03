@@ -187,7 +187,7 @@ public class CustomSwordItem extends TieredItem implements Vanishable {
         float damageMod = 1.0f + (stack.getTag().getInt("annessmithing.attack_damage_upgrades") * 0.1f);
 
         float damage = Math.round(stack.getTag().getInt("annessmithing.attack_damage") * damageMod);
-
+        if(stack.getDamageValue() == 1){damage = 0;}
         ImmutableMultimap.Builder<Attribute, AttributeModifier> builder = ImmutableMultimap.builder();
         builder.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(BASE_ATTACK_DAMAGE_UUID, "Weapon modifier", (double)damage, AttributeModifier.Operation.ADDITION));
         builder.put(Attributes.ATTACK_SPEED, new AttributeModifier(BASE_ATTACK_SPEED_UUID, "Weapon modifier", 0.5, AttributeModifier.Operation.ADDITION));

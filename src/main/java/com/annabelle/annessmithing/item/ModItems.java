@@ -50,10 +50,7 @@ public class ModItems {
             "blazing_tool_rod",
             () -> new ToolComponentItem("blaze", new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
     );
-    public static final RegistryObject<Item> SPEED_UPGRADE = ITEMS.register(
-            "speed_upgrade",
-            () -> new Item(new Item.Properties())
-    );
+
 
     public static final RegistryObject<Item> PRIMITIVE_REPAIR_KIT = ITEMS.register(
             "primitive_repair_kit",
@@ -75,6 +72,49 @@ public class ModItems {
             "superior_repair_kit",
             () -> new RepairKitItem(5000,5, new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
     );
+
+    public static final RegistryObject<Item> BASIC_SPEED_UPGRADE = ITEMS.register(
+            "basic_speed_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+    public static final RegistryObject<Item> IMPROVED_SPEED_UPGRADE = ITEMS.register(
+            "improved_speed_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+    public static final RegistryObject<Item> SUPREME_SPEED_UPGRADE = ITEMS.register(
+            "supreme_speed_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+
+    public static final RegistryObject<Item> BASIC_DAMAGE_UPGRADE = ITEMS.register(
+            "basic_damage_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+    public static final RegistryObject<Item> IMPROVED_DAMAGE_UPGRADE = ITEMS.register(
+            "improved_damage_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+    public static final RegistryObject<Item> SUPREME_DAMAGE_UPGRADE = ITEMS.register(
+            "supreme_damage_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+
+
+    public static final RegistryObject<Item> BASIC_DURABILITY_UPGRADE = ITEMS.register(
+            "basic_durability_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+    public static final RegistryObject<Item> IMPROVED_DURABILITY_UPGRADE = ITEMS.register(
+            "improved_durability_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+    public static final RegistryObject<Item> SUPREME_DURABILITY_UPGRADE = ITEMS.register(
+            "supreme_durability_upgrade",
+            () -> new Item(new Item.Properties().tab(ComponentCreativeModeTab.UPGRADES_TAB))
+    );
+
+
+
 
     public static void register(IEventBus eventBus) {
         MaterialGenerator.generateMaterials(

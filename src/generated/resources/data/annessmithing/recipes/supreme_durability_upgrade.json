@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "QUQ",
+    "QDQ",
+    "QUQ"
+  ],
+  "key": {
+    "Q": {
+      "tag": "forge:obsidian"
+    },
+    "D": {
+      "tag": "forge:storage_blocks/diamond"
+    },
+    "U": {
+      "item": "annessmithing:improved_durability_upgrade"
+    }
+  },
+  "result": {
+    "item": "annessmithing:supreme_durability_upgrade"
+  }
+}

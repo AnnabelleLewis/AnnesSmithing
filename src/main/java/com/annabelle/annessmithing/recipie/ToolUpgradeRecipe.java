@@ -38,7 +38,7 @@ public class ToolUpgradeRecipe extends UpgradeRecipe {
 
     @Override
     public ItemStack assemble(Container pInv) {
-        ItemStack itemstack = this.result.copy();
+        ItemStack itemstack = pInv.getItem(0).copy();
         CompoundTag compoundtag = pInv.getItem(0).getTag();
         if (compoundtag != null) {
             itemstack.setTag(compoundtag.copy());

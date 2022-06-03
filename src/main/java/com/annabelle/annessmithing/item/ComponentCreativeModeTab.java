@@ -10,4 +10,10 @@ public class ComponentCreativeModeTab {
             return new ItemStack(ModItems.WOOD_TOOL_ROD.get());
         }
     };
+    public static final CreativeModeTab UPGRADES_TAB = new CreativeModeTab("upgradestab") {
+        @Override
+        public ItemStack makeIcon() {
+            return new ItemStack(ModItems.WOOD_TOOL_ROD.get());
+        }
+    };
 }

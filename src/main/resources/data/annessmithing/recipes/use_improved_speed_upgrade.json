@@ -1,0 +1,14 @@
+{
+  "type": "annessmithing:tool_upgrade",
+  "base": {
+    "tag": "annessmithing:tools"
+  },
+  "addition": {
+    "item": "annessmithing:improved_speed_upgrade"
+  },
+  "result": {
+    "item": "annessmithing:custom_pick"
+  },
+  "modifier": "annessmithing.break_speed_upgrades",
+  "modifier_level": 2
+}
