@@ -209,7 +209,7 @@ public class CustomToolItem extends DiggerItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        float durrabilityMod = 1.0f + (stack.getTag().getInt("annessmithing.durrability_upgrades") * 0.1f);
+        float durrabilityMod = 1.0f + (stack.getTag().getInt("annessmithing.durability_upgrades") * 0.1f);
         return Math.round(stack.getTag().getInt("annessmithing.durability") * durrabilityMod) + 1;
     }
 

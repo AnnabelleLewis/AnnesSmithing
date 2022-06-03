@@ -4,7 +4,7 @@
     "tag": "annessmithing:tools"
   },
   "addition": {
-    "item": "annessmithing:basic_speed_upgrade"
+    "item": "annessmithing:basic_damage_upgrade"
   },
   "result": {
     "item": "annessmithing:custom_pick"
