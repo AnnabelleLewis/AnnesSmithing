@@ -160,7 +160,7 @@ public class CustomToolItem extends DiggerItem {
     @Override
     public float getDestroySpeed(ItemStack pStack, BlockState pState) {
         //return super.getDestroySpeed(pStack, pState);
-        if(isHoe){return 1f;}
+        if(pStack.getDamageValue() == 1){return 0f;}
         float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
         float destroySpeedMod = 1.0f + (pStack.getTag().getInt("annessmithing.break_speed_upgrades") * 0.1f);
         return pState.is(this.blocks) ? destroySpeed * destroySpeedMod : 1.0f;
@@ -297,4 +297,6 @@ public class CustomToolItem extends DiggerItem {
         xpToNext += 100;
         stack.getTag().putInt("annessmithing.xp_to_next_level", xpToNext);
     }
+
+
 }
