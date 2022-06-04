@@ -76,6 +76,9 @@ public class RepairKitItem extends Item {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(new TextComponent(
+                "Repair level: " + repairLevel
+        ));
         if(!pStack.hasTag()){
             pTooltipComponents.add(new TextComponent(
                     "Durability remaining: " + baseDurability

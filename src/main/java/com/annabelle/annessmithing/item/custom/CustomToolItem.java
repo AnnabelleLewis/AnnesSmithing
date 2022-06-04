@@ -193,6 +193,10 @@ public class CustomToolItem extends DiggerItem {
             TextComponent breakSpeedComponent = new TextComponent("Mining speed: " + (destroySpeed * destroySpeedMod));
             pTooltipComponents.add(breakSpeedComponent);
         }
+        pTooltipComponents.add(new TextComponent(
+                "Repair level: " +
+                        ModMaterials.MATERIALS.get(pStack.getTag().getString("annessmithing.head_material")).getRepairTier()
+        ));
         TextComponent damageComponent = new TextComponent("Durability: " + (pStack.getMaxDamage()-1 - pStack.getDamageValue()) + "/" + (pStack.getMaxDamage()-1));
         pTooltipComponents.add(damageComponent);
         if(pStack.getTag().contains("annessmithing.tool_level")){
