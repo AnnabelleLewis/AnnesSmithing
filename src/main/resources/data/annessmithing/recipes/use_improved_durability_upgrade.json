@@ -4,11 +4,11 @@
     "tag": "annessmithing:tools"
   },
   "addition": {
-    "item": "annessmithing:improved_speed_upgrade"
+    "item": "annessmithing:improved_durability_upgrade"
   },
   "result": {
     "item": "annessmithing:custom_pick"
   },
-  "modifier": "annessmithing.attack_durability_upgrades",
+  "modifier": "annessmithing.durability_upgrades",
   "modifier_level": 2
 }

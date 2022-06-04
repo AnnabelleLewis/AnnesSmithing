@@ -6,9 +6,9 @@
   "addition": {
     "item": "annessmithing:supreme_speed_upgrade"
   },
+  "modifier": "annessmithing.break_speed_upgrades",
   "result": {
     "item": "annessmithing:custom_pick"
   },
-  "modifier": "annessmithing.break_speed_upgrades",
   "modifier_level": 3
 }

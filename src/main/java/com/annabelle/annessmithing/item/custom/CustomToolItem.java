@@ -9,8 +9,6 @@ import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 
-import net.minecraft.core.BlockPos;
-
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -20,11 +18,8 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
@@ -36,6 +31,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
@@ -160,16 +156,18 @@ public class CustomToolItem extends DiggerItem {
     @Override
     public float getDestroySpeed(ItemStack pStack, BlockState pState) {
         //return super.getDestroySpeed(pStack, pState);
-        if(pStack.getDamageValue() == 1){return 0f;}
+        if(pStack.getDamageValue() == getMaxDamage(pStack) - 1){return 0f;}
         float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
-        float destroySpeedMod = 1.0f + (pStack.getTag().getInt("annessmithing.break_speed_upgrades") * 0.1f);
+        float destroySpeedMod = 1.0f + ((float)pStack.getTag().getInt("annessmithing.break_speed_upgrades") * 0.1f);
         return pState.is(this.blocks) ? destroySpeed * destroySpeedMod : 1.0f;
     }
 
     @Override
     public boolean isCorrectToolForDrops(ItemStack stack, BlockState state) {
         Tier tier = ModMaterials.MATERIALS.get(stack.getTag().getString("annessmithing.head_material")).getToolHeadTier();
-        return state.is(blocks) && net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(tier, state);
+        boolean tierFlag = net.minecraftforge.common.TierSortingRegistry.isCorrectTierForDrops(tier, state);
+        boolean copperFlag = state.is(Tags.Blocks.ORES_COPPER);
+        return state.is(blocks) && (tierFlag || copperFlag);
     }
 
     @Override
@@ -188,6 +186,19 @@ public class CustomToolItem extends DiggerItem {
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        if(pStack.getTag().contains("annessmithing.break_speed")){
+            float destroySpeed = pStack.getTag().getFloat("annessmithing.break_speed");
+            float destroySpeedMod = 1.0f + ((float)pStack.getTag().getInt("annessmithing.break_speed_upgrades") * 0.1f);
+
+            TextComponent breakSpeedComponent = new TextComponent("Mining speed: " + (destroySpeed * destroySpeedMod));
+            pTooltipComponents.add(breakSpeedComponent);
+        }
+        pTooltipComponents.add(new TextComponent(
+                "Repair level: " +
+                        ModMaterials.MATERIALS.get(pStack.getTag().getString("annessmithing.head_material")).getRepairTier()
+        ));
+        TextComponent damageComponent = new TextComponent("Durability: " + (pStack.getMaxDamage()-1 - pStack.getDamageValue()) + "/" + (pStack.getMaxDamage()-1));
+        pTooltipComponents.add(damageComponent);
         if(pStack.getTag().contains("annessmithing.tool_level")){
             TextComponent levelComponent = new TextComponent("Tool level: " + pStack.getTag().getInt("annessmithing.tool_level"));
             TextComponent xpComponent = new TextComponent("XP to next level: " + pStack.getTag().getInt("annessmithing.xp_to_next_level"));
@@ -202,8 +213,8 @@ public class CustomToolItem extends DiggerItem {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-        float durrabilityMod = 1.0f + (stack.getTag().getInt("annessmithing.durrability_upgrades") * 0.1f);
-        return Math.round(stack.getTag().getInt("annessmithing.durability") * durrabilityMod);
+        float durrabilityMod = 1.0f + (stack.getTag().getInt("annessmithing.durability_upgrades") * 0.1f);
+        return Math.round(stack.getTag().getInt("annessmithing.durability") * durrabilityMod) + 1;
     }
 
     // Hoe exclusive actions

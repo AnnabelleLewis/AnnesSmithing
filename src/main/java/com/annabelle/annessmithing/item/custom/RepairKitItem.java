@@ -2,9 +2,16 @@ package com.annabelle.annessmithing.item.custom;
 
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class RepairKitItem extends Item {
 
@@ -44,12 +51,12 @@ public class RepairKitItem extends Item {
 
     @Override
     public int getBarWidth(ItemStack pStack) {
-        float width = 0f;
+        float width = 1f;
         if(pStack.hasTag()){
             width = (float)pStack.getTag().getInt("annessmithing.durability_left") / (float)baseDurability;
 
         }
-        return (int)(width*13f);
+        return (int)((width)*13f);
     }
 
     @Override
@@ -60,9 +67,25 @@ public class RepairKitItem extends Item {
 
     @Override
     public int getBarColor(ItemStack pStack) {
-        if(!pStack.hasTag()){return 0;}
+        if(!pStack.hasTag()){return Mth.hsvToRgb(1f / 3.0F, 1.0F, 1.0F);}
         float stackMaxDamage = baseDurability;
         float f = Math.max(0.0F, ((float)pStack.getTag().getInt("annessmithing.durability_left")) / stackMaxDamage);
         return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(new TextComponent(
+                "Repair level: " + repairLevel
+        ));
+        if(!pStack.hasTag()){
+            pTooltipComponents.add(new TextComponent(
+                    "Durability remaining: " + baseDurability
+            ));
+            return;}
+        pTooltipComponents.add(new TextComponent(
+                "Durability remaining: " + pStack.getTag().getInt("annessmithing.durability_left")
+        ));
     }
 }

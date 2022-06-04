@@ -17,16 +17,14 @@ public class ToolUpgradeRecipe extends UpgradeRecipe {
 
     final String modifier;
     final int modLevel;
-    final ItemStack result;
 
     final Ingredient base;
     final Ingredient addition;
 
-    public ToolUpgradeRecipe(ResourceLocation pId, Ingredient pBase, Ingredient pAddition, ItemStack pResult, String modifier, int level) {
-        super(pId, pBase, pAddition, pResult);
+    public ToolUpgradeRecipe(ResourceLocation pId, Ingredient pBase, Ingredient pAddition,  String modifier, int level) {
+        super(pId, pBase, pAddition, ItemStack.EMPTY);
         this.modifier = modifier;
         this.modLevel = level;
-        this.result = pResult;
         this.base = pBase;
         this.addition = pAddition;
     }
@@ -40,13 +38,13 @@ public class ToolUpgradeRecipe extends UpgradeRecipe {
     public ItemStack assemble(Container pInv) {
         ItemStack itemstack = pInv.getItem(0).copy();
         CompoundTag compoundtag = pInv.getItem(0).getTag();
-        if (compoundtag != null) {
-            itemstack.setTag(compoundtag.copy());
-        }
+
         if(itemstack.getTag().contains(modifier)){
+            System.out.println("Incrementing modifier " + modifier);
             itemstack.getTag().putInt(modifier,
                     itemstack.getTag().getInt(modifier) + modLevel);
         }else{
+            System.out.println("Creating modifier " + modifier);
             itemstack.getTag().putInt(modifier, modLevel);
         }
 
@@ -60,25 +58,22 @@ public class ToolUpgradeRecipe extends UpgradeRecipe {
         public ToolUpgradeRecipe fromJson(ResourceLocation pRecipeId, JsonObject pJson) {
             Ingredient ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "base"));
             Ingredient ingredient1 = Ingredient.fromJson(GsonHelper.getAsJsonObject(pJson, "addition"));
-            ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pJson, "result"));
             String modifier = GsonHelper.getAsString(pJson, "modifier");
             int modLevel = GsonHelper.getAsInt(pJson, "modifier_level");
-            return new ToolUpgradeRecipe(pRecipeId, ingredient, ingredient1, itemstack,modifier, modLevel);
+            return new ToolUpgradeRecipe(pRecipeId, ingredient, ingredient1, modifier, modLevel);
         }
 
         public ToolUpgradeRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             Ingredient ingredient = Ingredient.fromNetwork(pBuffer);
             Ingredient ingredient1 = Ingredient.fromNetwork(pBuffer);
-            ItemStack itemstack = pBuffer.readItem();
             String modifier = pBuffer.readUtf();
             int level = pBuffer.readInt();
-            return new ToolUpgradeRecipe(pRecipeId, ingredient, ingredient1, itemstack, modifier, level);
+            return new ToolUpgradeRecipe(pRecipeId, ingredient, ingredient1,  modifier, level);
         }
 
         public void toNetwork(FriendlyByteBuf pBuffer, ToolUpgradeRecipe pRecipe) {
             pRecipe.base.toNetwork(pBuffer);
             pRecipe.addition.toNetwork(pBuffer);
-            pBuffer.writeItem(pRecipe.result);
             pBuffer.writeUtf(pRecipe.modifier);
             pBuffer.writeInt(pRecipe.modLevel);
         }

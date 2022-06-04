@@ -97,7 +97,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" Q ")
                 .pattern("QCQ")
                 .pattern(" Q ")
-                .unlockedBy("has_quartz", inventoryTrigger(ItemPredicate.Builder.item()
+                .unlockedBy("has_redstone", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.REDSTONE).build()))
                 .save(pFinishedRecipeConsumer);
         ShapedRecipeBuilder.shaped(ModItems.IMPROVED_SPEED_UPGRADE.get())
@@ -107,7 +107,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("QUQ")
                 .pattern("QIQ")
                 .pattern("QUQ")
-                .unlockedBy("has_quartz", inventoryTrigger(ItemPredicate.Builder.item()
+                .unlockedBy("has_redstone", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.REDSTONE).build()))
                 .save(pFinishedRecipeConsumer);
         ShapedRecipeBuilder.shaped(ModItems.SUPREME_SPEED_UPGRADE.get())
@@ -117,7 +117,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("QUQ")
                 .pattern("QDQ")
                 .pattern("QUQ")
-                .unlockedBy("has_quartz", inventoryTrigger(ItemPredicate.Builder.item()
+                .unlockedBy("has_redstone", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.REDSTONE).build()))
                 .save(pFinishedRecipeConsumer);
 
@@ -127,7 +127,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern(" Q ")
                 .pattern("QCQ")
                 .pattern(" Q ")
-                .unlockedBy("has_quartz", inventoryTrigger(ItemPredicate.Builder.item()
+                .unlockedBy("has_obsidian", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.OBSIDIAN).build()))
                 .save(pFinishedRecipeConsumer);
         ShapedRecipeBuilder.shaped(ModItems.IMPROVED_DURABILITY_UPGRADE.get())
@@ -137,7 +137,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("QUQ")
                 .pattern("QIQ")
                 .pattern("QUQ")
-                .unlockedBy("has_quartz", inventoryTrigger(ItemPredicate.Builder.item()
+                .unlockedBy("has_obsidian", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.OBSIDIAN).build()))
                 .save(pFinishedRecipeConsumer);
         ShapedRecipeBuilder.shaped(ModItems.SUPREME_DURABILITY_UPGRADE.get())
@@ -147,8 +147,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("QUQ")
                 .pattern("QDQ")
                 .pattern("QUQ")
-                .unlockedBy("has_quartz", inventoryTrigger(ItemPredicate.Builder.item()
+                .unlockedBy("has_obsidian", inventoryTrigger(ItemPredicate.Builder.item()
                         .of(Items.OBSIDIAN).build()))
+                .save(pFinishedRecipeConsumer);
+
+        ShapedRecipeBuilder.shaped(ModItems.TWINE_BINDER.get())
+                .define('S', Tags.Items.RODS_WOODEN)
+                .pattern("S S")
+                .pattern(" S ")
+                .unlockedBy("has_sticks", inventoryTrigger(ItemPredicate.Builder.item()
+                        .of(Items.STICK).build()))
                 .save(pFinishedRecipeConsumer);
 
     }

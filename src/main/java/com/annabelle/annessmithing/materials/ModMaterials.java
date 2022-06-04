@@ -1,7 +1,6 @@
 package com.annabelle.annessmithing.materials;
 
 import net.minecraft.world.item.Tiers;
-import net.minecraft.world.item.enchantment.Enchantments;
 
 import java.util.Map;
 
