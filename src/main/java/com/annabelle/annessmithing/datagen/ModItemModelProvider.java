@@ -27,6 +27,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         repairKit("advanced");
         repairKit("superior");
 
+        toolPart("binding","wood");
+
         upgrade("damage", "basic");
         upgrade("damage", "improved");
         upgrade("damage", "supreme");

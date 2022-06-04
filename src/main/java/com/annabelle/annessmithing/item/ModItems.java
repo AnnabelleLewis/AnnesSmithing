@@ -42,14 +42,11 @@ public class ModItems {
             "wood_tool_rod",
             () -> new ToolComponentItem("wood", new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
     );
-    public static final RegistryObject<Item> STRING_BINDER = ITEMS.register(
-            "string_binding",
-            () -> new ToolComponentItem("string", new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
+    public static final RegistryObject<Item> TWINE_BINDER = ITEMS.register(
+            "wood_binding",
+            () -> new ToolComponentItem("wood", new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
     );
-    public static final RegistryObject<Item> BLAZING_TOOL_ROD = ITEMS.register(
-            "blazing_tool_rod",
-            () -> new ToolComponentItem("blaze", new Item.Properties().tab(ComponentCreativeModeTab.COMPONENTS_TAB))
-    );
+
 
 
     public static final RegistryObject<Item> PRIMITIVE_REPAIR_KIT = ITEMS.register(
