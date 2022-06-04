@@ -50,6 +50,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         toolPart("sword_head",material);
     }
 
+    private void registerToolMisc(String material){
+        toolPart("binding",material);
+        toolPart("tool_rod", material);
+    }
+
     private ItemModelBuilder toolPart(String part_name, String materialName){
         return withExistingParent(materialName + "_" + part_name,
                 new ResourceLocation("item/generated")).texture("layer0",
